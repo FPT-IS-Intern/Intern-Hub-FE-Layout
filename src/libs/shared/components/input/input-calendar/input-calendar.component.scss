@@ -1,0 +1,98 @@
+// Calendar Input Form Component - System Design Format
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.input-form-label {
+  display: block;
+  font-size: var(--font-sm);
+  font-weight: 700;
+  color: var(--neutral-color-700);
+  margin-bottom: 4px;
+}
+
+.input-form-label-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.required-mark {
+  color: var(--utility-600);
+  margin-left: 2px;
+}
+
+.calendar-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-form-field {
+  padding: 8px 40px 8px 12px;
+  border: 1px solid var(--neutral-color-200);
+  border-radius: var(--radius-md);
+  font-size: var(--font-sm);
+  color: var(--neutral-color-700);
+  height: 36px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--neutral-color-10);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &::placeholder {
+    color: var(--neutral-color-400);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--brand-500);
+    box-shadow: 0 0 0 2px rgba(39, 64, 180, 0.15);
+  }
+
+  &:read-only {
+    background-color: var(--neutral-color-25);
+    cursor: not-allowed;
+  }
+}
+
+.calendar-icon-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: var(--neutral-color-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background-color: var(--neutral-color-50);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+}
+
+.hidden-date-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}

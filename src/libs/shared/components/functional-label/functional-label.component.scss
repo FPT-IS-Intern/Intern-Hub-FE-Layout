@@ -1,0 +1,58 @@
+// Functional Label Component - System Design Format
+
+.functional-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 36px;
+  gap: 0;
+  padding: 4px 8px;
+  cursor: pointer;
+
+  transition:
+    gap 0.25s ease,
+    justify-content 0.25s ease;
+}
+
+.functional-label-icon {
+  min-width: 20px;
+  height: 20px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-shrink: 0;
+
+  color: var(--neutral-color-200);
+}
+
+.functional-label a {
+  min-width: 100px;
+  white-space: nowrap;
+  display: none;
+  padding: 8px;
+
+  color: var(--neutral-color-200);
+  font-size: var(--font-sm);
+  text-decoration: none;
+
+  opacity: 0;
+  transform: translateX(-8px);
+
+  transition:
+    opacity 0.15s ease,
+    transform 0.15s ease;
+}
+
+:host-context(.sidebar-wrapper:hover) .functional-label {
+  justify-content: flex-start;
+  gap: 12px;
+}
+
+:host-context(.sidebar-wrapper:hover) .functional-label a {
+  opacity: 1;
+  transform: translateX(0);
+  display: block;
+}

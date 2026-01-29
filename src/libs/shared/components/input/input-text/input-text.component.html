@@ -1,0 +1,40 @@
+<div class="input-form">
+  <div class="input-form-content">
+    <label class="input-form-label">
+      <span class="label-text" [class.hidden]="!headerInput">
+        {{ headerInput }}
+        @if (required) {
+          <span class="required-mark">*</span>
+        }
+      </span>
+      <div class="input-field-wrapper">
+        <input
+          [type]="typeInput"
+          class="input-form-field"
+          [placeholder]="placeholder"
+          [readonly]="readonly"
+          [required]="required"
+          [style.width]="width"
+          [value]="value"
+          (input)="onInput($event)"
+          [attr.maxlength]="maxLength > 0 ? maxLength : null"
+        />
+        @if (icon) {
+          <button
+            type="button"
+            class="input-icon-button"
+            [class.clickable]="iconClick.observed"
+            (click)="onIconClick()"
+            [attr.aria-label]="icon"
+            [disabled]="!iconClick.observed"
+          >
+            <i [class]="icon" class="input-icon"></i>
+          </button>
+        }
+      </div>
+    </label>
+  </div>
+  <div class="limit" [class.hidden]="!(maxLength > 0 && showLimit)">
+    <span>{{ limit }}</span>
+  </div>
+</div>

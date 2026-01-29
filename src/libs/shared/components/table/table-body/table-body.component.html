@@ -1,0 +1,18 @@
+@for (row of rows; track $index) {
+  <tr>
+    @for (col of columns; track col.key) {
+      <td [style.width]="col.width" [style.font-size]="fontSize">
+        @if (columnTemplates[col.key]) {
+          <ng-container
+            *ngTemplateOutlet="
+              columnTemplates[col.key];
+              context: { $implicit: row[col.key], row: row }
+            "
+          ></ng-container>
+        } @else {
+          {{ row[col.key] }}
+        }
+      </td>
+    }
+  </tr>
+}

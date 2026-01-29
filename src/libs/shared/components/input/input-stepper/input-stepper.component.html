@@ -1,0 +1,62 @@
+<div
+  class="input-form"
+  [style.width]="width"
+  [class.disabled]="disabled"
+  [class.state-negative]="state === 'negative'"
+  [class.state-positive]="state === 'positive'"
+>
+  <div class="input-form-content">
+    <label class="input-form-label" [for]="componentId">
+      <span class="label-text">
+        {{ headerInput }}
+        @if (required) {
+          <span class="required-mark">*</span>
+        }
+      </span>
+    </label>
+  </div>
+
+  <div class="input-stepper-content">
+    <button
+      type="button"
+      class="input-stepper-button"
+      (click)="decrement()"
+      [disabled]="disabled"
+      aria-label="Giảm giá trị"
+    >
+      <span class="stepper-icon">−</span>
+    </button>
+    <input
+      [id]="componentId"
+      type="text"
+      class="input-stepper-input"
+      placeholder="0"
+      [placeholder]="placeholder || '0'"
+      title="Giá trị"
+      [title]="headerInput || 'Giá trị'"
+      [readonly]="readonly"
+      [disabled]="disabled"
+      [required]="required"
+      [value]="value"
+      (input)="onInput($event)"
+      [attr.aria-label]="headerInput || 'Giá trị'"
+    />
+    <button
+      type="button"
+      class="input-stepper-button"
+      (click)="increment()"
+      [disabled]="disabled"
+      aria-label="Tăng giá trị"
+    >
+      <span class="stepper-icon">+</span>
+    </button>
+  </div>
+
+  <div class="input-stepper-footer">
+    @if (error) {
+      <span class="input-stepper-error">{{ error }}</span>
+    } @else if (helperText) {
+      <span class="input-stepper-helper">{{ helperText }}</span>
+    }
+  </div>
+</div>

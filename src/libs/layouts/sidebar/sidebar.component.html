@@ -1,0 +1,7 @@
+<div class="sidebar-wrapper">
+  <aside class="sidebar">
+    @for (item of menuItems; track $index) {
+      <app-functional-label [icon]="item.icon" [content]="item.content"></app-functional-label>
+    }
+  </aside>
+</div>

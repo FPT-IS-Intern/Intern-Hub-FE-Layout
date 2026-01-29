@@ -1,0 +1,13 @@
+.label-button {
+  padding: 16px 8px;
+  border-radius: 16px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  font-size: var(--font-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-xs);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

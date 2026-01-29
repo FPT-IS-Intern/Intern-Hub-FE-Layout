@@ -1,0 +1,38 @@
+// Sidebar Component - System Design Format
+:host {
+  display: block;
+  height: 100%; // Đảm bảo component chiếm hết chiều cao của cha
+}
+
+.sidebar-wrapper {
+  width: 56px;
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.sidebar {
+  width: 56px;
+  height: 100%;
+  padding: 8px;
+  box-sizing: border-box; // Giữ nguyên chiều cao khi thay đổi padding
+
+  background-color: var(--brand-600);
+  // Bo góc trên, nhưng bỏ bo góc dưới để tràn xuống
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  transition:
+    width 0.3s ease,
+    padding 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.sidebar-wrapper:hover {
+  width: 344px;
+  .sidebar {
+    width: 344px;
+    padding: 16px;
+    background-color: var(--theme-neutral-light-100);
+  }
+}

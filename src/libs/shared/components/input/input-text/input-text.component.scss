@@ -1,0 +1,143 @@
+// Input Form Component - System Design Format
+
+.input-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.input-form-label {
+  display: block;
+  font-size: var(--font-sm);
+  font-weight: 700;
+  color: var(--neutral-color-700);
+}
+
+.label-text {
+  display: block;
+  margin-bottom: 4px;
+  height: 20px;
+}
+
+.required-mark {
+  color: var(--utility-600);
+  margin-left: 2px;
+}
+
+.input-form-field {
+  padding: 8px 12px;
+  border: 1px solid var(--neutral-color-200);
+  border-radius: var(--radius-md);
+  font-size: var(--font-sm);
+  color: var(--neutral-color-875);
+  height: 36px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--neutral-color-10);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &::placeholder {
+    color: var(--neutral-color-400);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--brand-500);
+    box-shadow: 0 0 0 2px rgba(var(--brand-500-rgb, 39, 64, 180), 0.15);
+  }
+
+  &:read-only {
+    background-color: var(--neutral-color-25);
+    cursor: not-allowed;
+  }
+
+  // Password input - larger dots
+  &[type='password'] {
+    font-family: 'Verdana', sans-serif;
+    font-size: 16px;
+    letter-spacing: 3px;
+
+    &::placeholder {
+      font-family: inherit;
+      font-size: var(--font-sm);
+      letter-spacing: normal;
+    }
+  }
+}
+
+// When icon is present, add padding-right
+.input-field-wrapper:has(.input-icon-button) {
+  .input-form-field {
+    padding-right: 36px;
+  }
+}
+
+.input-field-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--neutral-color-500);
+  transition: color 0.2s ease;
+  outline: none;
+
+  &.clickable {
+    cursor: pointer;
+
+    &:hover {
+      .input-icon {
+        color: var(--brand-500);
+      }
+    }
+  }
+
+  &:disabled {
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+// Force Font Awesome icon size
+.input-icon {
+  font-size: 14px !important;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+
+  &::before {
+    font-size: 14px !important;
+  }
+}
+
+.limit {
+  display: flex;
+  justify-content: flex-end;
+
+  span {
+    font-size: var(--font-xs, 12px);
+    color: var(--neutral-color-500);
+  }
+}

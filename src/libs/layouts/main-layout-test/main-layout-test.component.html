@@ -1,0 +1,296 @@
+<ng-template #textRight let-content>
+  <p class="text-gray-700">{{ content }}</p>
+</ng-template>
+
+<ng-template #buttonRight let-onClick="onClick">
+  <button class="px-4 py-2 bg-black text-white rounded hover:bg-gray-800" (click)="onClick()">
+    Xem chi tiết
+  </button>
+</ng-template>
+
+<!-- DEMO BUTTON AREA -->
+<div class="demo-buttons">
+  <!-- Row 1: Brand buttons -->
+  <app-button-container
+    size="xs"
+    content="XS"
+    backgroundColor="var(--brand-600)"
+    color="#fff"
+    (buttonClick)="onButtonClick('XS Brand')"
+  ></app-button-container>
+  <app-button-container
+    size="sm"
+    content="SM Button"
+    leftIcon="◀"
+    rightIcon="▶"
+    backgroundColor="var(--brand-600)"
+    color="#fff"
+    (buttonClick)="onButtonClick('SM Brand')"
+  ></app-button-container>
+  <app-button-container
+    size="md"
+    content="MD Button"
+    leftIcon="◀"
+    rightIcon="▶"
+    backgroundColor="var(--brand-600)"
+    color="#fff"
+    (buttonClick)="onButtonClick('MD Brand')"
+  ></app-button-container>
+  <app-button-container
+    size="lg"
+    content="LG Button"
+    leftIcon="◀"
+    rightIcon="▶"
+    backgroundColor="var(--brand-600)"
+    color="#fff"
+    (buttonClick)="onButtonClick('LG Brand')"
+  ></app-button-container>
+</div>
+
+<div class="demo-buttons">
+  <!-- Row 2: Primary buttons -->
+  <app-button-container
+    size="xs"
+    content="XS"
+    backgroundColor="var(--primary-600)"
+    color="#fff"
+    (buttonClick)="onButtonClick('XS Primary')"
+  ></app-button-container>
+  <app-button-container
+    size="sm"
+    content="SM Button"
+    leftIcon="★"
+    rightIcon="★"
+    backgroundColor="var(--primary-600)"
+    color="#fff"
+    (buttonClick)="onButtonClick('SM Primary')"
+  ></app-button-container>
+  <app-button-container
+    size="md"
+    content="MD Button"
+    leftIcon="★"
+    rightIcon="★"
+    backgroundColor="var(--primary-600)"
+    color="#fff"
+    (buttonClick)="onButtonClick('MD Primary')"
+  ></app-button-container>
+  <app-button-container
+    size="lg"
+    content="LG Button"
+    leftIcon="★"
+    rightIcon="★"
+    backgroundColor="var(--primary-600)"
+    color="#fff"
+    (buttonClick)="onButtonClick('LG Primary')"
+  ></app-button-container>
+</div>
+
+<!-- APPROVAL LIST DEMO -->
+<div class="demo-approval-list">
+  <app-approval-list
+    [rows]="approvalRows"
+    headerContentLeft="Thao tác"
+    headerContentRight="Danh sách chờ duyệt"
+    width="600px"
+  >
+  </app-approval-list>
+</div>
+
+<!-- INPUT TEXT DEMO SECTION -->
+<div class="demo-section">
+  <h3 class="demo-section-title">INPUT TEXT</h3>
+  <div class="input-text-demo-grid">
+    <!-- Row 1: Basic inputs -->
+    <app-input-text
+      headerInput="Input Label"
+      placeholder="Placeholder..."
+      [required]="true"
+      width="100%"
+      icon="dsi dsi-anchor-line dsi-theme-red-600"
+    ></app-input-text>
+
+    <app-input-text
+      headerInput="Input Label"
+      placeholder="Placeholder..."
+      [required]="true"
+      width="100%"
+    ></app-input-text>
+
+    <app-input-text placeholder="Placeholder..." width="100%"></app-input-text>
+
+    <app-input-text placeholder="Placeholder..." width="100%" [readonly]="true"></app-input-text>
+
+    <!-- Row 2: With helper text and character limit -->
+    <app-input-text
+      headerInput="Input Label"
+      placeholder="Placeholder..."
+      [required]="true"
+      [maxLength]="500"
+      [showLimit]="true"
+      width="100%"
+    ></app-input-text>
+
+    <app-input-text
+      headerInput="Input Label"
+      placeholder="Placeholder..."
+      [required]="true"
+      [maxLength]="500"
+      [showLimit]="true"
+      width="100%"
+    ></app-input-text>
+
+    <app-input-text
+      placeholder="Placeholder..."
+      [maxLength]="500"
+      [showLimit]="true"
+      width="100%"
+    ></app-input-text>
+
+    <app-input-text
+      placeholder="Placeholder..."
+      [maxLength]="500"
+      [showLimit]="true"
+      width="100%"
+      [readonly]="true"
+    ></app-input-text>
+  </div>
+</div>
+
+<!-- PASSWORD DEMO SECTION -->
+<div class="demo-section">
+  <h3 class="demo-section-title">PASSWORD INPUT</h3>
+  <div class="input-text-demo-grid">
+    <app-input-text
+      headerInput="Mật khẩu"
+      placeholder="Nhập mật khẩu..."
+      [typeInput]="passwordType"
+      [icon]="passwordIcon"
+      (iconClick)="togglePassword()"
+      [required]="true"
+      width="250px"
+    ></app-input-text>
+
+    <app-input-text
+      headerInput="Tìm kiếm"
+      placeholder="Tìm kiếm theo tên..."
+      icon="fa-solid fa-magnifying-glass"
+      width="250px"
+    ></app-input-text>
+  </div>
+</div>
+
+<!-- CALENDAR DEMO SECTION -->
+<div class="demo-section">
+  <h3 class="demo-section-title">CALENDAR INPUT</h3>
+  <div class="input-text-demo-grid">
+    <app-input-calendar
+      headerInput="Ngày sinh"
+      placeholder="dd/mm/yyyy"
+      [required]="true"
+    ></app-input-calendar>
+
+    <app-input-calendar
+      headerInput="Date Picker"
+      placeholder="dd/mm/yyyy"
+      [required]="true"
+    ></app-input-calendar>
+  </div>
+</div>
+
+<!-- STEPPER DEMO SECTION -->
+<div class="demo-section">
+  <h3 class="demo-section-title">INPUT STEPPER</h3>
+  <div class="stepper-demo-grid">
+    <!-- Default State -->
+    <app-input-stepper
+      headerInput="Input Label"
+      helperText="Placeholder of hint text to help"
+      [min]="0"
+      [max]="100"
+      [step]="1"
+      [value]="0"
+      [required]="true"
+      width="250px"
+    ></app-input-stepper>
+
+    <!-- Negative State -->
+    <app-input-stepper
+      headerInput="Input Label"
+      helperText="Placeholder of hint text to help"
+      state="negative"
+      [min]="0"
+      [max]="100"
+      [step]="1"
+      [value]="0"
+      [required]="true"
+      width="250px"
+    ></app-input-stepper>
+
+    <!-- Positive State -->
+    <app-input-stepper
+      headerInput="Input Label"
+      helperText="Placeholder of hint text to help"
+      state="positive"
+      [min]="0"
+      [max]="100"
+      [step]="1"
+      [value]="0"
+      [required]="true"
+      width="250px"
+    ></app-input-stepper>
+
+    <!-- Disabled State -->
+    <app-input-stepper
+      headerInput="Input Label"
+      helperText="Placeholder of hint text to help"
+      [disabled]="true"
+      [min]="0"
+      [max]="100"
+      [step]="1"
+      [value]="0"
+      [required]="true"
+      width="250px"
+    ></app-input-stepper>
+  </div>
+</div>
+
+<!-- TABLE DEMO SECTION -->
+<div class="demo-section">
+  <h3 class="demo-section-title">TABLE</h3>
+  <ng-template #statusTemplate let-status>
+    <app-button-container
+      [content]="status"
+      [backgroundColor]="status === 'Active' ? 'var(--brand-600)' : 'var(--neutral-color-100)'"
+      [color]="status === 'Active' ? 'var(--neutral-color-100)' : 'var(--neutral-color-600)'"
+      borderColor="transparent"
+    ></app-button-container>
+  </ng-template>
+
+  <table>
+    <thead>
+      <tr app-table-header [columns]="columns" [backgroundColor]="tableBackgroundColor"></tr>
+    </thead>
+
+    <tbody
+      app-table-body
+      [rows]="rows"
+      [columns]="columns"
+      [columnTemplates]="{ status: statusTemplate }"
+    ></tbody>
+  </table>
+</div>
+
+<!-- ROUTER CONTENT (keep it for children if any, though likely unused now) -->
+<router-outlet />
+
+@if (showPopup) {
+  <app-pop-up-confirm
+    imgUrl="/Bộ icon message (1).svg"
+    title="Xác nhận hành động"
+    content="Bạn có chắc chắn muốn thực hiện hành động này không?"
+    colorButton="var(--brand-600)"
+    (confirmClick)="onPopupConfirm()"
+    (cancelClick)="onPopupCancel()"
+  >
+  </app-pop-up-confirm>
+}

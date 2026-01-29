@@ -1,0 +1,27 @@
+@for (col of columns; track col.key) {
+  <th
+    scope="col"
+    [style.width]="col.width"
+    [style.backgroundColor]="backgroundColor"
+    [style.color]="textColor"
+  >
+    <div class="header-container">
+      <div class="header-content">
+        @if (headerIconLeft) {
+          <div class="icon-left">
+            <i [class]="headerIconLeft"></i>
+          </div>
+        }
+        <div class="header-text" [style.font-size]="fontSize">
+          {{ col.header }}
+        </div>
+        @if (headerIconRight) {
+          <div class="icon-right">
+            <i [class]="headerIconRight"></i>
+          </div>
+        }
+      </div>
+      <p class="divider">|</p>
+    </div>
+  </th>
+}
