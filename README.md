@@ -1,267 +1,504 @@
-# Intern Hub Layout
+# 🏢 Intern Hub Layout
 
-This library provides a standard layout and shared UI components for Intern Hub applications. It is designed to be highly configurable via Angular Routing.
+![Angular](https://img.shields.io/badge/Angular-21-DD0031?style=flat&logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=flat&logo=typescript&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat)
+![npm](https://img.shields.io/badge/npm-@goat--bravos/intern--hub--layout-CB3837?style=flat&logo=npm)
 
-## Installation
+A comprehensive Angular library providing reusable layout components and shared UI elements for Intern Hub applications. Built with Angular 21 and designed for seamless integration.
 
-Run the following command to install the package:
+---
+
+## 📋 Table of Contents
+
+- [Features](#-features)
+- [Installation](#-installation)
+- [Quick Start](#-quick-start)
+- [Usage Examples](#-usage-examples)
+- [Components API Reference](#-components-api-reference)
+- [Development](#-development)
+- [Contributing](#-contributing)
+- [License](#-license)
+
+---
+
+## ✨ Features
+
+- 🎨 **Pre-built Layouts** - Main layout with sidebar and header components
+- 🧩 **Reusable UI Components** - Buttons, inputs, tables, and more
+- 🔧 **Highly Configurable** - Route-based configuration via Angular Router
+- 📦 **Standalone Components** - Modern Angular standalone component architecture
+- 🎯 **TypeScript Support** - Full type definitions included
+- 🚀 **Angular 21 Ready** - Built for the latest Angular version
+
+---
+
+## 📦 Installation
+
+Install the package via npm:
 
 ```bash
-npm install intern-hub-layout dynamic-ds
+npm install @goat-bravos/intern-hub-layout
 ```
 
-_(Note: `dynamic-ds` is a required peer dependency for the design system)_
+### Peer Dependencies
 
-## Setup
+This library requires the following peer dependencies:
 
-To enable the configurable layout pattern, you must add `withComponentInputBinding()` to your `app.config.ts`. This allows the Router to pass configuration data directly to the Layout component inputs.
+| Package           | Version | Required    |
+| ----------------- | ------- | ----------- |
+| `@angular/common` | ^21.0.0 | ✅ Yes      |
+| `@angular/core`   | ^21.0.0 | ✅ Yes      |
+| `@angular/router` | ^21.0.0 | ✅ Yes      |
+| `dynamic-ds`      | ^1.0.0  | ⚠️ Optional |
 
-**`src/app/app.config.ts`**
+Install peer dependencies if not already present:
+
+```bash
+npm install @angular/common @angular/core @angular/router dynamic-ds
+```
+
+---
+
+## 🚀 Quick Start
+
+### Step 1: Enable Component Input Binding
+
+Add `withComponentInputBinding()` to your `app.config.ts` to enable route-based configuration:
 
 ```typescript
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter, withComponentInputBinding } from '@angular/router'; // Import this
-import { routes } from './app.routes';
+// src/app/app.config.ts
+import { ApplicationConfig } from "@angular/core";
+import { provideRouter, withComponentInputBinding } from "@angular/router";
+import { routes } from "./app.routes";
 
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(routes, withComponentInputBinding()), // Add this function
-  ],
+  providers: [provideRouter(routes, withComponentInputBinding())],
 };
 ```
 
-## Usage
+### Step 2: Configure Routes with Layout
 
-### 1. Main Layout Configuration
-
-You can use the `MainLayoutComponent` as a shell for your application. Define the Sidebar items directly in your route configuration using the `data` property.
-
-**`src/app/app.routes.ts`**
+Set up the `MainLayoutComponent` as your app shell:
 
 ```typescript
-import { Routes } from '@angular/router';
-import { MainLayoutComponent } from 'intern-hub-layout'; // Import from library
+// src/app/app.routes.ts
+import { Routes } from "@angular/router";
+import { MainLayoutComponent } from "@goat-bravos/intern-hub-layout";
 
 export const routes: Routes = [
   {
-    path: '',
+    path: "",
     component: MainLayoutComponent,
-    // Configure Sidebar Items here
     data: {
       sidebarItems: [
-        { icon: 'dsi-home-01-line', content: 'Home' },
-        { icon: 'dsi-map-01-line', content: 'Roadmap' },
-        { icon: 'dsi-file-01-line', content: 'Documents' },
+        { icon: "dsi-home-01-line", content: "Home" },
+        { icon: "dsi-map-01-line", content: "Roadmap" },
+        { icon: "dsi-file-01-line", content: "Documents" },
       ],
     },
-    // Your application pages go here
     children: [
       {
-        path: '',
-        loadComponent: () => import('./home/home.component').then((m) => m.HomeComponent),
+        path: "",
+        loadComponent: () => import("./pages/home/home.component").then((m) => m.HomeComponent),
+      },
+      {
+        path: "roadmap",
+        loadComponent: () => import("./pages/roadmap/roadmap.component").then((m) => m.RoadmapComponent),
       },
     ],
   },
 ];
 ```
 
-### 2. Using Shared Components
+---
 
-You can import individual components from the library.
+## 📝 Usage Examples
+
+### Using Button Components
 
 ```typescript
-import { Component } from '@angular/core';
-import { ButtonContainerComponent, InputTextComponent } from 'intern-hub-layout';
+import { Component } from "@angular/core";
+import { ButtonContainerComponent, LabelButtonComponent } from "@goat-bravos/intern-hub-layout";
 
 @Component({
-  selector: 'app-example',
+  selector: "app-example",
   standalone: true,
-  imports: [ButtonContainerComponent, InputTextComponent],
+  imports: [ButtonContainerComponent, LabelButtonComponent],
   template: `
-    <app-button-container content="Click Me"></app-button-container>
-    <app-input-text placeholder="Enter name"></app-input-text>
+    <app-button-container content="Primary Action" size="lg" backgroundColor="var(--brand-500)" (buttonClick)="onAction()"> </app-button-container>
+
+    <app-label-button label="Status: Active" bgColor="#22c55e" textColor="#ffffff"> </app-label-button>
   `,
 })
-export class ExampleComponent {}
+export class ExampleComponent {
+  onAction() {
+    console.log("Button clicked!");
+  }
+}
 ```
 
-## Available Components
-
-### Layouts
-
-- `MainLayoutComponent`: Full application shell with Sidebar and Header.
-- `SidebarComponent`: Standalone sidebar.
-- `HeaderComponent`: Standalone header.
-
-### Shared UI
-
-- **Buttons**: `ButtonContainerComponent`, `LabelButtonComponent`
-- **Inputs**: `InputTextComponent`, `InputStepperComponent`, `InputCalendarComponent`
-- **Tables**: `TableHeaderComponent`, `TableBodyComponent`
-- **Other**: `ApprovalListComponent`, `PopUpConfirmComponent`
-
-## Author
-
-Intern Hub Team
-
-## Component API Reference
-
-### 1. `MainLayoutComponent`
-
-The main application shell.
-
-- **Inputs**:
-  - `sidebarItems: SidebarItem[]`: List of items to display in the sidebar.
-
-#### Interface `SidebarItem`
+### Using Input Components
 
 ```typescript
-interface SidebarItem {
-  icon: string;
-  content: string;
+import { Component } from "@angular/core";
+import { InputTextComponent, InputCalendarComponent } from "@goat-bravos/intern-hub-layout";
+
+@Component({
+  selector: "app-form-example",
+  standalone: true,
+  imports: [InputTextComponent, InputCalendarComponent],
+  template: `
+    <app-input-text headerInput="Username" placeholder="Enter username" [required]="true" [maxLength]="50" [showLimit]="true" [(value)]="username" (valueChange)="onUsernameChange($event)"> </app-input-text>
+
+    <app-input-calendar headerInput="Start Date" placeholder="dd/mm/yyyy" [(value)]="startDate"> </app-input-calendar>
+  `,
+})
+export class FormExampleComponent {
+  username = "";
+  startDate = "";
+
+  onUsernameChange(value: string) {
+    console.log("Username:", value);
+  }
+}
+```
+
+### Using Table Components
+
+```typescript
+import { Component } from "@angular/core";
+import { TableHeaderComponent, TableBodyComponent, ColumnConfig } from "@goat-bravos/intern-hub-layout";
+
+@Component({
+  selector: "app-table-example",
+  standalone: true,
+  imports: [TableHeaderComponent, TableBodyComponent],
+  template: `
+    <table>
+      <thead>
+        <tr app-table-header [columns]="columns" backgroundColor="#1e293b" textColor="#ffffff"></tr>
+      </thead>
+      <tbody app-table-body [columns]="columns" [rows]="data"></tbody>
+    </table>
+  `,
+})
+export class TableExampleComponent {
+  columns: ColumnConfig[] = [
+    { header: "ID", key: "id", width: "80px" },
+    { header: "Name", key: "name", width: "200px" },
+    { header: "Status", key: "status", width: "120px" },
+  ];
+
+  data = [
+    { id: 1, name: "John Doe", status: "Active" },
+    { id: 2, name: "Jane Smith", status: "Pending" },
+  ];
 }
 ```
 
 ---
 
-### 2. `ButtonContainerComponent`
+## 📚 Components API Reference
 
-A container for standard buttons.
+### Layout Components
 
-- **Selector**: `app-button-container`
-- **Inputs**:
-  - `size: 'xs' | 'sm' | 'md' | 'lg'`: Size of the button (default: `'md'`).
-  - `content: string`: Text content of the button.
-  - `leftIcon: string`: CSS class or content for left icon.
-  - `rightIcon: string`: CSS class or content for right icon.
-  - `color: string`: Text color (default: `var(--brand-100)`).
-  - `backgroundColor: string`: Background color (default: `var(--utility-900)`).
-  - `borderColor: string`: Border color (default: `var(--brand-100)`).
-  - `fontSize: string`: Custom font size.
-- **Outputs**:
-  - `buttonClick`: Event emitted when button is clicked.
+#### `MainLayoutComponent`
 
-### 3. `LabelButtonComponent`
+The main application shell with integrated sidebar and header.
 
-A small button-like label.
+| Selector       | `app-main-layout`                            |
+| -------------- | -------------------------------------------- |
+| **Inputs**     |                                              |
+| `sidebarItems` | `SidebarItem[]` - List of sidebar menu items |
 
-- **Selector**: `app-label-button`
-- **Inputs**:
-  - `label: string`: Text content.
-  - `bgColor: string`: Background color.
-  - `borderColor: string`: Border color.
-  - `textColor: string`: Text color.
-  - `width: string`: Width of the component (default: `100%`).
-  - `height: string`: Height of the component (default: `28px`).
+```typescript
+interface SidebarItem {
+  icon: string; // Icon class name (e.g., 'dsi-home-01-line')
+  content: string; // Display text for the menu item
+}
+```
 
 ---
 
-### 4. `InputTextComponent`
+#### `SidebarComponent`
 
-Standard text input field.
+Standalone sidebar navigation component.
 
-- **Selector**: `app-input-text`
-- **Inputs**:
-  - `headerInput: string`: Label text above the input.
-  - `placeholder: string`: Placeholder text.
-  - `value: string`: Initial value (supports binding).
-  - `readonly: boolean`: If true, input is read-only.
-  - `required: boolean`: If true, shows required asterisk.
-  - `width: string`: Width of the input container (default: `100%`).
-  - `maxLength: number`: Maximum character length.
-  - `showLimit: boolean`: Whether to show character count.
-  - `icon: string`: Icon class to display inside input.
-  - `typeInput: string`: Input type (e.g., `'text'`, `'password'`).
-- **Outputs**:
-  - `valueChange`: Emits new value on input.
-  - `iconClick`: Emits when the icon is clicked.
-
-### 5. `InputStepperComponent`
-
-Number input with increment/decrement buttons.
-
-- **Selector**: `app-input-stepper`
-- **Inputs**:
-  - `headerInput`: Label text.
-  - `value: number`: Initial value.
-  - `min`: Minimum value (default: 0).
-  - `max`: Maximum value (default: 100).
-  - `step`: Step value (default: 1).
-  - `state`: Visual state (`'default'`, `'negative'`, `'positive'`).
-  - `helperText`: Text displayed below the input.
-  - `readonly`, `required`, `disabled`, `width`.
-- **Outputs**:
-  - `valueChange`: Emits new numeric value.
-
-### 6. `InputCalendarComponent`
-
-Date picker input.
-
-- **Selector**: `app-input-calendar`
-- **Inputs**:
-  - `headerInput`: Label text.
-  - `value: string`: Date value in ISO format (`yyyy-mm-dd`).
-  - `placeholder`: Placeholder text (default: `'dd/mm/yyyy'`).
-  - `readonly`, `required`, `width`.
-- **Outputs**:
-  - `valueChange`: Emits selected date in ISO format.
+| Selector    | `app-sidebar`                                   |
+| ----------- | ----------------------------------------------- |
+| **Inputs**  |                                                 |
+| `menuItems` | `SidebarItem[]` - List of menu items to display |
 
 ---
 
-### 7. `TableHeaderComponent`
+#### `HeaderComponent`
 
-Renders table headers.
+Standalone header component.
 
-- **Selector**: `tr[app-table-header]` (Attribute on `<tr>`)
-- **Inputs**:
-  - `columns: ColumnConfig[]`: Array of column configurations.
-  - `backgroundColor`: Header background color.
-  - `textColor`: Text color (default: white).
-  - `headerIconLeft`, `headerIconRight`: Icons for header cells.
+| Selector | `app-header` |
+| -------- | ------------ |
 
-#### Interface `ColumnConfig`
+---
+
+### Button Components
+
+#### `ButtonContainerComponent`
+
+Customizable button with icon support.
+
+| Selector          | `app-button-container`                                         |
+| ----------------- | -------------------------------------------------------------- |
+| **Inputs**        |                                                                |
+| `size`            | `'xs' \| 'sm' \| 'md' \| 'lg'` - Button size (default: `'md'`) |
+| `content`         | `string` - Button text                                         |
+| `leftIcon`        | `string` - Left icon class                                     |
+| `rightIcon`       | `string` - Right icon class                                    |
+| `color`           | `string` - Text color (default: `var(--brand-100)`)            |
+| `backgroundColor` | `string` - Background color (default: `var(--utility-900)`)    |
+| `borderColor`     | `string` - Border color (default: `var(--brand-100)`)          |
+| `fontSize`        | `string` - Custom font size                                    |
+| **Outputs**       |                                                                |
+| `buttonClick`     | `EventEmitter<any>` - Fires when button is clicked             |
+
+---
+
+#### `LabelButtonComponent`
+
+Small label/badge style button.
+
+| Selector      | `app-label-button`                            |
+| ------------- | --------------------------------------------- |
+| **Inputs**    |                                               |
+| `label`       | `string` - Display text                       |
+| `bgColor`     | `string` - Background color                   |
+| `borderColor` | `string` - Border color                       |
+| `textColor`   | `string` - Text color                         |
+| `width`       | `string` - Component width (default: `100%`)  |
+| `height`      | `string` - Component height (default: `28px`) |
+
+---
+
+### Input Components
+
+#### `InputTextComponent`
+
+Standard text input with label and validation support.
+
+| Selector      | `app-input-text`                                  |
+| ------------- | ------------------------------------------------- |
+| **Inputs**    |                                                   |
+| `headerInput` | `string` - Label text above input                 |
+| `placeholder` | `string` - Placeholder text                       |
+| `value`       | `string` - Input value (two-way binding)          |
+| `readonly`    | `boolean` - Read-only state                       |
+| `required`    | `boolean` - Shows required indicator              |
+| `width`       | `string` - Container width (default: `100%`)      |
+| `maxLength`   | `number` - Maximum characters (0 = unlimited)     |
+| `showLimit`   | `boolean` - Show character count                  |
+| `icon`        | `string` - Icon class for input                   |
+| `typeInput`   | `string` - Input type (default: `'text'`)         |
+| **Outputs**   |                                                   |
+| `valueChange` | `EventEmitter<string>` - Fires on value change    |
+| `iconClick`   | `EventEmitter<void>` - Fires when icon is clicked |
+
+---
+
+#### `InputStepperComponent`
+
+Numeric input with increment/decrement controls.
+
+| Selector      | `app-input-stepper`                                    |
+| ------------- | ------------------------------------------------------ |
+| **Inputs**    |                                                        |
+| `headerInput` | `string` - Label text                                  |
+| `value`       | `number` - Current value                               |
+| `min`         | `number` - Minimum value (default: `0`)                |
+| `max`         | `number` - Maximum value (default: `100`)              |
+| `step`        | `number` - Step increment (default: `1`)               |
+| `state`       | `'default' \| 'negative' \| 'positive'` - Visual state |
+| `helperText`  | `string` - Helper text below input                     |
+| `readonly`    | `boolean` - Read-only state                            |
+| `required`    | `boolean` - Required state                             |
+| `disabled`    | `boolean` - Disabled state                             |
+| `width`       | `string` - Component width                             |
+| **Outputs**   |                                                        |
+| `valueChange` | `EventEmitter<number>` - Fires on value change         |
+
+---
+
+#### `InputCalendarComponent`
+
+Date picker input component.
+
+| Selector      | `app-input-calendar`                             |
+| ------------- | ------------------------------------------------ |
+| **Inputs**    |                                                  |
+| `headerInput` | `string` - Label text                            |
+| `value`       | `string` - Date value (ISO format: `yyyy-mm-dd`) |
+| `placeholder` | `string` - Placeholder (default: `'dd/mm/yyyy'`) |
+| `readonly`    | `boolean` - Read-only state                      |
+| `required`    | `boolean` - Required state                       |
+| `width`       | `string` - Component width                       |
+| **Outputs**   |                                                  |
+| `valueChange` | `EventEmitter<string>` - Fires on date selection |
+
+---
+
+### Table Components
+
+#### `TableHeaderComponent`
+
+Table header row component.
+
+| Selector          | `tr[app-table-header]` (Attribute selector)      |
+| ----------------- | ------------------------------------------------ |
+| **Inputs**        |                                                  |
+| `columns`         | `ColumnConfig[]` - Column definitions            |
+| `backgroundColor` | `string` - Header background                     |
+| `textColor`       | `string` - Text color (default: `#ffffff`)       |
+| `headerIconLeft`  | `string` - Left icon for headers                 |
+| `headerIconRight` | `string` - Right icon for headers                |
+| `fontSize`        | `string` - Font size (default: `var(--font-xs)`) |
 
 ```typescript
 interface ColumnConfig {
   header: string; // Display text
-  key: string; // Data key
-  width: string; // CSS width
+  key: string; // Data property key
+  width: string; // CSS width value
 }
 ```
 
-### 8. `TableBodyComponent`
+---
 
-Renders table rows.
+#### `TableBodyComponent`
 
-- **Selector**: `tbody[app-table-body]` (Attribute on `<tbody>`)
-- **Inputs**:
-  - `rows: any[]`: Array of data objects.
-  - `columns: ColumnConfig[]`: Column configuration to map data.
-  - `columnTemplates`: Object mapping column keys to `TemplateRef` for custom cell rendering.
+Table body component with template support.
+
+| Selector          | `tbody[app-table-body]` (Attribute selector)          |
+| ----------------- | ----------------------------------------------------- |
+| **Inputs**        |                                                       |
+| `rows`            | `any[]` - Data array                                  |
+| `columns`         | `ColumnConfig[]` - Column definitions                 |
+| `columnTemplates` | `Record<string, TemplateRef>` - Custom cell templates |
 
 ---
 
-### 9. `ApprovalListComponent`
+### Other Components
 
-A list component showing approval items.
+#### `ApprovalListComponent`
 
-- **Selector**: `app-approval-list`
-- **Inputs**:
-  - `rows: ApprovalListItemInterface[]`: List of items.
-  - `headerContentLeft`: Text for left header.
-  - `headerContentRight`: Text for right header.
-  - `width`: Component width.
+List component for approval workflows.
 
-### 10. `PopUpConfirmComponent`
+| Selector             | `app-approval-list`                        |
+| -------------------- | ------------------------------------------ |
+| **Inputs**           |                                            |
+| `rows`               | `ApprovalListItemInterface[]` - List items |
+| `headerContentLeft`  | `string` - Left header text                |
+| `headerContentRight` | `string` - Right header text               |
+| `width`              | `string` - Component width                 |
 
-A confirmation modal.
+---
 
-- **Selector**: `app-pop-up-confirm`
-- **Inputs**:
-  - `title`: Popup title.
-  - `content`: Message body.
-  - `imgUrl`: Icon/Image URL.
-  - `colorButton`: Color of the confirm button.
-- **Outputs**:
-  - `confirmClick`: Emits when confirmed.
-  - `cancelClick`: Emits when canceled.
+#### `PopUpConfirmComponent`
+
+Confirmation modal dialog.
+
+| Selector       | `app-pop-up-confirm`              |
+| -------------- | --------------------------------- |
+| **Inputs**     |                                   |
+| `title`        | `string` - Modal title            |
+| `content`      | `string` - Message content        |
+| `imgUrl`       | `string` - Icon/image URL         |
+| `colorButton`  | `string` - Confirm button color   |
+| **Outputs**    |                                   |
+| `confirmClick` | `EventEmitter` - Fires on confirm |
+| `cancelClick`  | `EventEmitter` - Fires on cancel  |
+
+---
+
+## 🛠️ Development
+
+### Prerequisites
+
+- Node.js 18+
+- npm 9+
+- Angular CLI 21+
+
+### Building the Library
+
+```bash
+# Install dependencies
+npm install
+
+# Build for production
+npm run build
+
+# Build and pack for local testing
+npm run pack:lib
+```
+
+### Publishing
+
+```bash
+# Dry run (test publish)
+npm run publish:lib:dry
+
+# Publish to npm
+npm run publish:lib
+```
+
+### Project Structure
+
+```
+intern-hub-fe-layout/
+├── src/
+│   ├── libs/
+│   │   ├── layouts/           # Layout components
+│   │   │   ├── main-layout/
+│   │   │   ├── sidebar/
+│   │   │   └── header/
+│   │   └── shared/
+│   │       └── components/    # Shared UI components
+│   │           ├── button/
+│   │           ├── input/
+│   │           ├── table/
+│   │           ├── approval/
+│   │           └── pop-up/
+│   └── public-api.ts          # Public exports
+├── ng-package.json            # ng-packagr config
+├── package.json
+└── README.md
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👥 Author
+
+**Intern Hub Team**
+
+- Repository: [GitHub](https://github.com/FPT-IS-Intern/Intern-Hub-FE-Layout)
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ by Intern Hub Team</sub>
+</div>

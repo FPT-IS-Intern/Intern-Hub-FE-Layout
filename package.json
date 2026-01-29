@@ -1,6 +1,6 @@
 {
   "name": "@goat-bravos/intern-hub-layout",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Angular library for intern hub layout components",
   "peerDependencies": {
     "@angular/common": "^21.0.0",
