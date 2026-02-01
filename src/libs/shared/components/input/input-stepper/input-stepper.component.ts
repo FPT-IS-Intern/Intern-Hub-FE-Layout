@@ -38,7 +38,7 @@ export class InputStepperComponent {
     }
 
     increment(): void {
-        if (this.readonly) return;
+        if (this.readonly || this.disabled) return;
         const newValue = this._value + this.step;
         if (newValue <= this.max) {
             this._value = newValue;
@@ -47,7 +47,7 @@ export class InputStepperComponent {
     }
 
     decrement(): void {
-        if (this.readonly) return;
+        if (this.readonly || this.disabled) return;
         const newValue = this._value - this.step;
         if (newValue >= this.min) {
             this._value = newValue;

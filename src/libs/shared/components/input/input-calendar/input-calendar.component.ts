@@ -43,6 +43,30 @@ export class InputCalendarComponent {
     return isoDate;
   }
   
+  // Validate if a date string (dd/mm/yyyy) represents a valid date
+  isValidDate(displayDate: string): boolean {
+    if (!displayDate || displayDate.length !== 10) return false;
+    
+    const parts = displayDate.split('/');
+    if (parts.length !== 3) return false;
+    
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10);
+    const year = parseInt(parts[2], 10);
+    
+    // Basic range validation
+    if (isNaN(day) || isNaN(month) || isNaN(year)) return false;
+    if (month < 1 || month > 12) return false;
+    if (day < 1 || day > 31) return false;
+    if (year < 1900 || year > 2100) return false;
+    
+    // Create date and verify it matches input (handles invalid dates like 31/02)
+    const date = new Date(year, month - 1, day);
+    return date.getFullYear() === year && 
+           date.getMonth() === month - 1 && 
+           date.getDate() === day;
+  }
+
   // Convert display format (dd/mm/yyyy) to ISO format (yyyy-mm-dd)
   formatToISO(displayDate: string): string {
     if (!displayDate) return '';
@@ -77,8 +101,8 @@ export class InputCalendarComponent {
     
     this.displayValue = value;
     
-    // Only emit if complete date
-    if (value.length === 10) {
+    // Only emit if complete and valid date
+    if (value.length === 10 && this.isValidDate(value)) {
       const isoValue = this.formatToISO(value);
       this._value = isoValue;
       this.valueChange.emit(isoValue);
