@@ -34,7 +34,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/FPT-IS-Intern/Intern-Hub-FE-Layout"
+    "url": "git+https://github.com/FPT-IS-Intern/Intern-Hub-FE-Layout.git"
   },
   "devDependencies": {
     "@angular/build": "^21.1.2",
