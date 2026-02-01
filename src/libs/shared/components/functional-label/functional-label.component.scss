@@ -1,58 +1,56 @@
-// Functional Label Component - System Design Format
+:host {
+  display: block;
+  width: 100%;
+}
 
 .functional-label {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  height: 36px;
-  gap: 0;
-  padding: 4px 8px;
+  height: 40px;
+  padding: 0;
   cursor: pointer;
+  box-sizing: border-box;
+  transition: all 0.25s ease;
 
-  transition:
-    gap 0.25s ease,
-    justify-content 0.25s ease;
+  app-icon {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    width: 44px;
+  }
+
+  a {
+    max-width: 0;
+    opacity: 0;
+    visibility: hidden;
+    white-space: nowrap;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--neutral-color-400);
+    transform: translateX(-10px);
+    transition: all 0.25s ease;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
 }
 
-.functional-label-icon {
-  min-width: 20px;
-  height: 20px;
+// Khi Sidebar mở rộng (Hover vào wrapper)
+:host-context(.sidebar-wrapper:hover) {
+  .functional-label {
+    justify-content: flex-start;
+    padding-left: 8px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  flex-shrink: 0;
-
-  color: var(--neutral-color-200);
-}
-
-.functional-label a {
-  min-width: 100px;
-  white-space: nowrap;
-  display: none;
-  padding: 8px;
-
-  color: var(--neutral-color-200);
-  font-size: var(--font-sm);
-  text-decoration: none;
-
-  opacity: 0;
-  transform: translateX(-8px);
-
-  transition:
-    opacity 0.15s ease,
-    transform 0.15s ease;
-}
-
-:host-context(.sidebar-wrapper:hover) .functional-label {
-  justify-content: flex-start;
-  gap: 12px;
-}
-
-:host-context(.sidebar-wrapper:hover) .functional-label a {
-  opacity: 1;
-  transform: translateX(0);
-  display: block;
+    a {
+      opacity: 1;
+      visibility: visible;
+      max-width: 200px;
+      transform: translateX(0);
+      color: var(--brand-600);
+      flex: 1;
+      text-align: center;
+    }
+  }
 }

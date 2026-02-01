@@ -2,7 +2,6 @@
  * Public API Surface of intern-hub-layout
  */
 
-export * from './libs/layouts/main-layout/main-layout.component';
 export * from './libs/layouts/header/header.component';
 export * from './libs/layouts/sidebar/sidebar.component';
 

@@ -1,0 +1,11 @@
+// icon.component.scss
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+
+  .icon {
+    transition: color 0.25s ease;
+  }
+}

@@ -8,7 +8,7 @@ export interface ColumnConfig {
 }
 
 @Component({
-  selector: 'tr[app-table-header]', // ✅ Attribute selector on tr
+  selector: 'tr[app-table-header]',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './table-header.component.html',

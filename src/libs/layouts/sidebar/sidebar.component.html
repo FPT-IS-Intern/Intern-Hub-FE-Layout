@@ -1,7 +1,28 @@
 <div class="sidebar-wrapper">
-  <aside class="sidebar">
-    @for (item of menuItems; track $index) {
-      <app-functional-label [icon]="item.icon" [content]="item.content"></app-functional-label>
+  <aside
+    class="sidebar"
+    [style.background-color]="!isSidebarExpanded ? data.backgroundColor : null"
+  >
+    @for (item of data.menuItems; track $index) {
+      <app-functional-label
+        class="sidebar-item"
+        [isSidebarExpanded]="isSidebarExpanded"
+        [iconLeft]="item.iconLeft"
+        [iconRight]="item.iconRight"
+        [content]="item.content"
+        [routerLink]="item.url"
+        [colorIconLeft]="item.colorIconLeft"
+        [colorIconRight]="item.colorIconRight"
+        [colorContent]="item.colorContent"
+        [backgroundColor]="item.backgroundColor"
+        [borderRadius]="item.borderRadius"
+        (clicked)="onMenuItemClick(item, $event)"
+        [colorIconLeftHover]="item.colorIconLeftHover"
+        [colorIconRightHover]="item.colorIconRightHover"
+        [backgroundColorHover]="item.backgroundColorHover"
+        [width]="item.width"
+        [height]="item.height"
+      ></app-functional-label>
     }
   </aside>
 </div>

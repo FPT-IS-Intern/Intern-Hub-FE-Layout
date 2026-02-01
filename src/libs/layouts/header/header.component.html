@@ -1,26 +1,57 @@
 <header class="app-header">
   <div class="header-left">
-    <img class="logo" src="FPT-IS-Logo.png" alt="FPT IS Logo" />
+    <img
+      class="logo"
+      [src]="data.logo || 'assets/FPT-IS-Logo.png'"
+      alt="Logo"
+    />
   </div>
 
   <div class="header-right">
-    <button class="header-btn" aria-label="Help">
-      <span class="icon">?</span>
-    </button>
-
-    <button class="header-btn notify-btn" aria-label="Notifications">
-      <span class="icon">🔔</span>
-    </button>
-
-    <button class="header-btn" aria-label="Settings">
-      <span class="icon">⚙️</span>
-    </button>
+    @for (item of data.headerItems; track $index) {
+      <button
+        class="header-btn"
+        [attr.aria-label]="item.content"
+        (click)="handleActionClick(item, $event)"
+      >
+        <app-icon
+          [iconData]="
+            getIconData(
+              item.icon,
+              item.colorIcon,
+              item.width || '16px',
+              item.height || '16px'
+            )
+          "
+        ></app-icon>
+        @if (item.badge) {
+          <span class="badge">{{ item.badge }}</span>
+        }
+      </button>
+    }
 
     <div class="header-user">
       <button class="user-btn">
-        <img class="avatar" src="FPT-IS-Logo.png" alt="User avatar" />
-        <span class="user-name">User Name</span>
-        <span class="caret">▾</span>
+        @if (data.userIcon) {
+          <app-icon
+            [iconData]="
+              getIconData(data.userIcon, data.userIconColor, '16px', '16px')
+            "
+          ></app-icon>
+        }
+        <span class="user-name">{{ data.userName }}</span>
+        @if (data.dropdownIcon) {
+          <app-icon
+            [iconData]="
+              getIconData(
+                data.dropdownIcon,
+                data.dropdownIconColor,
+                '16px',
+                '16px'
+              )
+            "
+          ></app-icon>
+        }
       </button>
     </div>
   </div>

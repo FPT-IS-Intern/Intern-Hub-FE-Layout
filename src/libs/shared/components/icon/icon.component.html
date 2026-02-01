@@ -1,0 +1,10 @@
+<i
+  class="icon"
+  [ngClass]="iconData?.icon"
+  [style.color]="iconData?.colorIcon"
+  [style.width]="iconData?.width"
+  [style.height]="iconData?.height"
+  (click)="handleClick($event)"
+  (keydown.enter)="handleClick($event)"
+  (keydown.space)="handleClick($event)"
+></i>

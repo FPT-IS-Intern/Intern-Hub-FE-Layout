@@ -1,10 +1,11 @@
 {
   "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "./dist/intern-hub-layout",
+  "dest": "dist/intern-hub-layout",
   "lib": {
     "entryFile": "src/public-api.ts"
   },
   "allowedNonPeerDependencies": [
+    "dynamic-ds",
     "tslib"
   ]
 }

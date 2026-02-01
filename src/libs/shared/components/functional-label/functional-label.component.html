@@ -1,4 +1,36 @@
-<div class="functional-label">
-  <i class="{{ icon }}"></i>
-  <a href="/*" class="color-text-neutral-700">{{ content }}</a>
+<div
+  class="functional-label"
+  (click)="handleClick($event)"
+  (keydown.enter)="handleClick($event)"
+  (keydown.space)="handleClick($event)"
+  [attr.tabindex]="routerLink ? null : 0"
+  [attr.role]="routerLink ? null : 'button'"
+  [style.background-color]="currentBackgroundColor"
+  [style.border-radius]="currentBorderRadius"
+  [style.width]="width"
+  [style.height]="height"
+>
+  @if (hasIconLeft && iconLeftData) {
+    <app-icon
+      [iconData]="iconLeftData"
+      [width]="widthIconLeft"
+      [height]="heightIconLeft"
+      [colorIconHover]="colorIconLeftHover"
+      [backgroundColorHover]="backgroundColorHover"
+    ></app-icon>
+  }
+  <a
+    [routerLink]="routerLink"
+    [style.color]="currentColorContent"
+    [style.width]="widthContent"
+    [style.height]="heightContent"
+    >{{ content }}</a
+  >
+  @if (hasIconRight && iconRightData) {
+    <app-icon
+      [iconData]="iconRightData"
+      [colorIconHover]="colorIconRightHover"
+      [backgroundColorHover]="backgroundColorHover"
+    ></app-icon>
+  }
 </div>
