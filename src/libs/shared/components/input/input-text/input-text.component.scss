@@ -31,7 +31,7 @@
 
 .input-form-field {
   padding: 8px 12px;
-  border: 1px solid var(--neutral-color-200);
+  border: 1px solid var(--border-color, var(--neutral-color-200));
   border-radius: var(--radius-md);
   font-size: var(--font-sm);
   color: var(--neutral-color-875);
@@ -44,7 +44,12 @@
     box-shadow 0.2s ease;
 
   &::placeholder {
-    color: var(--neutral-color-400);
+    color: var(--placeholder-color, var(--neutral-color-300)); // Default lighter
+    opacity: 1; // Ensure color is applied correctly
+  }
+
+  &:hover {
+     border-color: var(--border-color-hover, var(--neutral-color-400));
   }
 
   &:focus {

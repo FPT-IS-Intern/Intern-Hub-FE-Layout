@@ -20,6 +20,17 @@ export class InputTextComponent {
   @Input() icon: string = '';
   @Input() typeInput: string = 'text';
   
+  // Customization
+  @Input() placeholderColor: string = '';
+  @Input() borderColor: string = '';
+  @Input() borderColorHover: string = '';
+  @Input() borderRadius: string = '';
+  @Input() padding: string = '';
+  @Input() height: string = '';
+  @Input() fontSize: string = '';
+  @Input() fontWeight: string = '';
+  @Input() backgroundColor: string = '';
+  
   @Output() valueChange = new EventEmitter<string>();
   @Output() iconClick = new EventEmitter<void>();
   

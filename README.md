@@ -283,16 +283,20 @@ export class MyComponent {
 
 **Inputs:**
 
-| Input             | Type                           | Default                | Description           |
-| ----------------- | ------------------------------ | ---------------------- | --------------------- |
-| `size`            | `'xs' \| 'sm' \| 'md' \| 'lg'` | `'md'`                 | Button size variant   |
-| `content`         | `string`                       | `''`                   | Button text           |
-| `leftIcon`        | `string`                       | -                      | Left icon text/class  |
-| `rightIcon`       | `string`                       | -                      | Right icon text/class |
-| `color`           | `string`                       | `'var(--brand-100)'`   | Text color            |
-| `backgroundColor` | `string`                       | `'var(--utility-900)'` | Background color      |
-| `borderColor`     | `string`                       | `'var(--brand-100)'`   | Border color          |
-| `fontSize`        | `string`                       | -                      | Custom font size      |
+| Input             | Type                           | Default                | Description              |
+| ----------------- | ------------------------------ | ---------------------- | ------------------------ |
+| Input             | Type                           | Default                | Description              |
+| ----------------- | ------------------------------ | ---------------------- | ------------------------ |
+| `size`            | `'xs' \| 'sm' \| 'md' \| 'lg'` | `'md'` (Optional)      | Button size variant      |
+| `content`         | `string`                       | `''`                   | Button text              |
+| `leftIcon`        | `string`                       | -                      | Left icon text/class     |
+| `rightIcon`       | `string`                       | -                      | Right icon text/class    |
+| `color`           | `string`                       | `'var(--brand-100)'`   | Text color               |
+| `backgroundColor` | `string`                       | `'var(--utility-900)'` | Background color         |
+| `borderColor`     | `string`                       | `'var(--brand-100)'`   | Border color             |
+| `borderRadius`    | `string`                       | -                      | Button border radius     |
+| `width`           | `string`                       | -                      | Button width             |
+| `fontSize`        | `string`                       | -                      | Custom font size         |
 
 **Outputs:**
 
@@ -381,18 +385,27 @@ export class MyComponent {
 
 **Inputs:**
 
-| Input         | Type      | Default  | Description                    |
-| ------------- | --------- | -------- | ------------------------------ |
-| `headerInput` | `string`  | `''`     | Label text above input         |
-| `placeholder` | `string`  | `''`     | Placeholder text               |
-| `value`       | `string`  | `''`     | Input value (two-way binding)  |
-| `readonly`    | `boolean` | `false`  | Read-only state                |
-| `required`    | `boolean` | `false`  | Shows required indicator (\*)  |
-| `width`       | `string`  | `'100%'` | Container width                |
-| `maxLength`   | `number`  | `0`      | Max characters (0 = unlimited) |
-| `showLimit`   | `boolean` | `false`  | Show character count           |
-| `icon`        | `string`  | `''`     | Icon class for input           |
-| `typeInput`   | `string`  | `'text'` | Input type                     |
+| Input              | Type      | Default  | Description                       |
+| ------------------ | --------- | -------- | --------------------------------- |
+| `headerInput`      | `string`  | `''`     | Label text above input            |
+| `placeholder`      | `string`  | `''`     | Placeholder text                  |
+| `value`            | `string`  | `''`     | Input value (two-way binding)     |
+| `readonly`         | `boolean` | `false`  | Read-only state                   |
+| `required`         | `boolean` | `false`  | Shows required indicator (\*)     |
+| `width`            | `string`  | `'100%'` | Container width                   |
+| `height`           | `string`  | -        | Input height                      |
+| `padding`          | `string`  | -        | Input padding                     |
+| `maxLength`        | `number`  | `0`      | Max characters (0 = unlimited)    |
+| `showLimit`        | `boolean` | `false`  | Show character count              |
+| `icon`             | `string`  | `''`     | Icon class for input              |
+| `typeInput`        | `string`  | `'text'` | Input type (text, password, etc.) |
+| `backgroundColor`  | `string`  | -        | Input background color            |
+| `borderColor`      | `string`  | -        | Input border color                |
+| `borderColorHover` | `string`  | -        | Input border color on hover       |
+| `borderRadius`     | `string`  | -        | Input border radius               |
+| `placeholderColor` | `string`  | -        | Placeholder text color            |
+| `fontSize`         | `string`  | -        | Input font size                   |
+| `fontWeight`       | `string`  | -        | Input font weight                 |
 
 **Outputs:**
 

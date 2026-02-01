@@ -11,6 +11,12 @@
 npm-debug.log
 yarn-error.log
 
+demo/node_modules
+demo/dist
+demo/tmp
+demo/out-tsc
+demo/bazel-out
+
 # IDEs and editors
 .idea/
 .project

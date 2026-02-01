@@ -10,7 +10,7 @@ import { ButtonSize, BUTTON_SIZE_MAP } from './button-container.model';
   styleUrls: ['./button-container.component.scss'],
 })
 export class ButtonContainerComponent {
-  @Input() size: ButtonSize = 'md';
+  @Input() size: ButtonSize | '' = 'md';
   @Input() content = '';
 
   @Input() fontSize?: string;
@@ -21,11 +21,20 @@ export class ButtonContainerComponent {
   @Input() color = 'var(--brand-100)';
   @Input() backgroundColor = 'var(--utility-900)';
   @Input() borderColor = 'var(--brand-100)';
+  @Input() borderRadius?: string;
+  @Input() width?: string;
 
   @Output() buttonClick = new EventEmitter<any>();
 
   get sizeStyle() {
-    return BUTTON_SIZE_MAP[this.size];
+    return this.size ? BUTTON_SIZE_MAP[this.size as ButtonSize] : {
+      minWidth: 'auto',
+      minHeight: 'auto',
+      fontSize: 'inherit',
+      iconSize: '20px',
+      contentWidth: 'auto',
+      contentHeight: 'auto'
+    };
   }
 
   handleClick(): any {
