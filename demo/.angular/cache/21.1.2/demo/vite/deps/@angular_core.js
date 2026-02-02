@@ -126,6 +126,7 @@ import {
   RendererStyleFlags2,
   ResourceImpl,
   RuntimeError,
+  SIGNAL,
   SSR_CONTENT_INTEGRITY_MARKER,
   Sanitizer,
   SecurityContext,
@@ -285,8 +286,10 @@ import {
   restoreComponentResolutionQueue,
   runInInjectionContext,
   setAllowDuplicateNgModuleIdsForTest,
+  setAlternateWeakRefImpl,
   setClassMetadata,
   setClassMetadataAsync,
+  setCurrentInjector,
   setDocument,
   setInjectorProfilerContext,
   setLocaleId,
@@ -498,17 +501,7 @@ import {
   ɵɵvalidateAttribute,
   ɵɵviewQuery,
   ɵɵviewQuerySignal
-} from "./chunk-BH3ENZUH.js";
-import "./chunk-EOM55H4P.js";
-import {
-  SIGNAL,
-  setAlternateWeakRefImpl
-} from "./chunk-V5E4SIOF.js";
-import "./chunk-3W2H5XLE.js";
-import "./chunk-7PGV35JJ.js";
-import {
-  setCurrentInjector
-} from "./chunk-55QJMHXO.js";
+} from "./chunk-QNPPEMJJ.js";
 import "./chunk-GOMI4DH3.js";
 export {
   ANIMATION_MODULE_TYPE,

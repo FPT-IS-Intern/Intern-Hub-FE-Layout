@@ -1,11 +1,12 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonSize, BUTTON_SIZE_MAP } from './button-container.model';
+import { IconComponent } from '../../icon/icon.component';
 
 @Component({
   selector: 'app-button-container',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, IconComponent],
   templateUrl: './button-container.component.html',
   styleUrls: ['./button-container.component.scss'],
 })
@@ -27,14 +28,16 @@ export class ButtonContainerComponent {
   @Output() buttonClick = new EventEmitter<any>();
 
   get sizeStyle() {
-    return this.size ? BUTTON_SIZE_MAP[this.size as ButtonSize] : {
-      minWidth: 'auto',
-      minHeight: 'auto',
-      fontSize: 'inherit',
-      iconSize: '20px',
-      contentWidth: 'auto',
-      contentHeight: 'auto'
-    };
+    return this.size
+      ? BUTTON_SIZE_MAP[this.size as ButtonSize]
+      : {
+          minWidth: 'auto',
+          minHeight: 'auto',
+          fontSize: 'inherit',
+          iconSize: '20px',
+          contentWidth: 'auto',
+          contentHeight: 'auto',
+        };
   }
 
   handleClick(): any {
