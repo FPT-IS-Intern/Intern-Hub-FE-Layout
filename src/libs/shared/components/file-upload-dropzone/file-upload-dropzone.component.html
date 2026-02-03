@@ -65,4 +65,137 @@
     multiple
     hidden
   />
+
+  <!-- Attachment List -->
+  <div class="attachment-list" *ngIf="uploadedFiles.length > 0">
+    <div class="attachment-item" *ngFor="let file of uploadedFiles">
+      <div class="file-icon" [ngClass]="getIconType(file)">
+        <ng-container [ngSwitch]="getIconType(file)">
+          <svg
+            *ngSwitchCase="'pdf'"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect x="3" y="2" width="18" height="20" rx="2" fill="#FEE2E2" />
+            <rect x="3" y="2" width="18" height="20" rx="2" stroke="#EF4444" stroke-width="1" />
+            <text x="12" y="14" text-anchor="middle" fill="#EF4444" font-size="6" font-weight="600">
+              PDF
+            </text>
+          </svg>
+          <svg
+            *ngSwitchCase="'doc'"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect x="3" y="2" width="18" height="20" rx="2" fill="#DBEAFE" />
+            <rect x="3" y="2" width="18" height="20" rx="2" stroke="#3B82F6" stroke-width="1" />
+            <text x="12" y="14" text-anchor="middle" fill="#3B82F6" font-size="6" font-weight="600">
+              DOC
+            </text>
+          </svg>
+          <svg
+            *ngSwitchCase="'xls'"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect x="3" y="2" width="18" height="20" rx="2" fill="#D1FAE5" />
+            <rect x="3" y="2" width="18" height="20" rx="2" stroke="#10B981" stroke-width="1" />
+            <text x="12" y="14" text-anchor="middle" fill="#10B981" font-size="6" font-weight="600">
+              XLS
+            </text>
+          </svg>
+          <svg
+            *ngSwitchCase="'image'"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect x="3" y="2" width="18" height="20" rx="2" fill="#FEF3C7" />
+            <rect x="3" y="2" width="18" height="20" rx="2" stroke="#F59E0B" stroke-width="1" />
+            <text x="12" y="14" text-anchor="middle" fill="#F59E0B" font-size="6" font-weight="600">
+              IMG
+            </text>
+          </svg>
+          <svg
+            *ngSwitchDefault
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect x="3" y="2" width="18" height="20" rx="2" fill="#F3F4F6" />
+            <rect x="3" y="2" width="18" height="20" rx="2" stroke="#9CA3AF" stroke-width="1" />
+            <text x="12" y="14" text-anchor="middle" fill="#9CA3AF" font-size="6" font-weight="600">
+              FILE
+            </text>
+          </svg>
+        </ng-container>
+      </div>
+
+      <div class="file-info">
+        <span class="file-name">{{ file.fileName }}</span>
+        <div class="file-meta">
+          <span class="file-size">{{ file.fileSize }}</span>
+          <span class="separator">•</span>
+          <span class="file-date">{{ file.dateTime }}</span>
+        </div>
+      </div>
+
+      <div class="file-actions">
+        <button class="action-btn download-btn" (click)="onDownload(file)" title="Tải xuống">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M10 3V13M10 13L6 9M10 13L14 9"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M3 15V16C3 16.5523 3.44772 17 4 17H16C16.5523 17 17 16.5523 17 16V15"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <button class="action-btn delete-btn" (click)="onDelete(file)" title="Xóa">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4 5H16M7 5V4C7 3.44772 7.44772 3 8 3H12C12.5523 3 13 3.44772 13 4V5M8 9V14M12 9V14M5 5L6 16C6 16.5523 6.44772 17 7 17H13C13.5523 17 14 16.5523 14 16L15 5"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

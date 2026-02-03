@@ -1,4 +1,4 @@
-<div class="upload-button-wrapper">
+<div class="avatar-upload-wrapper">
   <div class="label-row" *ngIf="label">
     <span class="label-text">{{ label }}</span>
     <span class="required-mark" *ngIf="required">*</span>
@@ -45,5 +45,33 @@
     (change)="onFileChange($event)"
   />
 
-  <span class="helper-text" *ngIf="helperText">{{ helperText }}</span>
+  <span class="helper-text" *ngIf="helperText && !uploadedFile">{{ helperText }}</span>
+
+  <!-- Uploaded File Preview -->
+  <div class="file-preview" *ngIf="uploadedFile">
+    <img
+      *ngIf="uploadedFile.previewUrl"
+      [src]="uploadedFile.previewUrl"
+      [alt]="uploadedFile.fileName"
+      class="preview-image"
+    />
+    <span class="file-name">{{ uploadedFile.fileName }}</span>
+    <button type="button" class="remove-btn" (click)="onRemove()" title="Xóa">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M4 4L12 12M12 4L4 12"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </button>
+  </div>
 </div>

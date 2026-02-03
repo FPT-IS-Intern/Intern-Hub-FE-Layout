@@ -36,7 +36,7 @@ export * from './libs/shared/components/pop-up/pop-up-confirm/pop-up-confirm.com
 export * from './libs/shared/components/modal/modal.component';
 
 // Shared components - Upload Button
-export * from './libs/shared/components/upload-button/upload-button.component';
+export * from './libs/shared/components/avatar-upload-button/avatar-upload-button.component';
 
 // Shared components - File Upload Dropzone
 export * from './libs/shared/components/file-upload-dropzone/file-upload-dropzone.component';
