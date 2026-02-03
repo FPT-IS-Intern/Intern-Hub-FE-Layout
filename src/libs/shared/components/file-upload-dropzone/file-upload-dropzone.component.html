@@ -1,0 +1,68 @@
+<div class="file-upload-dropzone">
+  <label class="dropzone-label">{{ label }}</label>
+
+  <div
+    class="dropzone-area"
+    [class.dragging]="isDragging"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)"
+    (click)="onButtonClick()"
+  >
+    <div class="dropzone-content">
+      <svg
+        class="upload-icon"
+        width="40"
+        height="40"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12 16V8M12 8L9 11M12 8L15 11"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M9 22H15C18.866 22 22 18.866 22 15C22 12.0667 20.2333 9.56667 17.6667 8.46667C17.8778 7.98889 18 7.46667 18 6.93333C18 4.41111 15.5778 2.44444 12.8333 3.04444C11.0111 1.15556 8.11111 0.911111 6 2.48889C3.51111 4.35556 3.22222 8.02222 5.11111 10.2444C3.24444 11.2222 2 13.1778 2 15.4444C2 18.9778 5.02222 22 9 22Z"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+
+      <button type="button" class="upload-btn" (click)="$event.stopPropagation(); onButtonClick()">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 16V8M12 8L9 11M12 8L15 11"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        {{ buttonText }}
+      </button>
+
+      <span class="helper-text">{{ displayHelperText }}</span>
+    </div>
+  </div>
+
+  <input
+    #fileInput
+    type="file"
+    [accept]="acceptFormats"
+    (change)="onFileChange($event)"
+    multiple
+    hidden
+  />
+</div>

@@ -1,0 +1,85 @@
+.upload-button-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.label-text {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--neutral-color-700);
+}
+
+.required-mark {
+  font-size: 14px;
+  font-weight: 500;
+  color: red;
+}
+
+.tooltip-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--neutral-color-400);
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--neutral-color-600);
+  }
+}
+
+.upload-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  width: fit-content;
+  min-width: 120px;
+  height: 40px;
+  background-color: white;
+  border: 1px dashed var(--brand-600);
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--brand-600);
+
+  &:hover {
+    background-color: var(--brand-100);
+    border-color: var(--brand-700);
+  }
+
+  &:active {
+    background-color: var(--brand-200);
+  }
+}
+
+.file-input {
+  display: none;
+}
+
+.helper-text {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--neutral-color-500);
+}

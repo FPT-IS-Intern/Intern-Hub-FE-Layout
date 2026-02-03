@@ -1,0 +1,49 @@
+<div class="upload-button-wrapper">
+  <div class="label-row" *ngIf="label">
+    <span class="label-text">{{ label }}</span>
+    <span class="required-mark" *ngIf="required">*</span>
+    <button type="button" class="tooltip-icon" *ngIf="showTooltip" [title]="tooltipText">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5" />
+        <path d="M8 7V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+        <circle cx="8" cy="5" r="0.75" fill="currentColor" />
+      </svg>
+    </button>
+  </div>
+
+  <button type="button" class="upload-button" (click)="onButtonClick()">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M10 4V13M10 4L6 8M10 4L14 8"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M3 13V15C3 15.5523 3.44772 16 4 16H16C16.5523 16 17 15.5523 17 15V13"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+    <span>{{ buttonText }}</span>
+  </button>
+
+  <input
+    #fileInput
+    type="file"
+    class="file-input"
+    [accept]="acceptFormats"
+    (change)="onFileChange($event)"
+  />
+
+  <span class="helper-text" *ngIf="helperText">{{ helperText }}</span>
+</div>

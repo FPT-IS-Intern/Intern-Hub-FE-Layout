@@ -32,3 +32,11 @@ export * from './libs/shared/components/approval/approval-list-item/approval-lis
 // Shared components - Pop-ups
 export * from './libs/shared/components/pop-up/pop-up-confirm/pop-up-confirm.component';
 
+// Shared components - Modal
+export * from './libs/shared/components/modal/modal.component';
+
+// Shared components - Upload Button
+export * from './libs/shared/components/upload-button/upload-button.component';
+
+// Shared components - File Upload Dropzone
+export * from './libs/shared/components/file-upload-dropzone/file-upload-dropzone.component';
