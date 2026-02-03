@@ -1,7 +1,26 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonSize, BUTTON_SIZE_MAP } from './button-container.model';
-import { IconComponent } from '../../icon/icon.component';
+import { IconComponent, IconData } from '../../icon/icon.component';
+
+export interface ButtonContainerData {
+  size?: ButtonSize | '';
+  content?: string;
+  fontSize?: string;
+  leftIcon?: string;
+  leftIconData?: IconData[];
+  rightIcon?: string;
+  rightIconData?: IconData[];
+  color?: string;
+  backgroundColor?: string;
+  border?: string;
+  borderRadius: '8px';
+  width?: string;
+  height: '36px';
+  padding?: string;
+  marginLeft?: string;
+  marginRight?: string;
+}
 
 @Component({
   selector: 'app-button-container',
@@ -11,19 +30,28 @@ import { IconComponent } from '../../icon/icon.component';
   styleUrls: ['./button-container.component.scss'],
 })
 export class ButtonContainerComponent {
+  @Input() buttonData?: ButtonContainerData;
+
   @Input() size: ButtonSize | '' = 'md';
-  @Input() content = '';
+  @Input() content?: string;
 
   @Input() fontSize?: string;
 
   @Input() leftIcon?: string;
-  @Input() rightIcon?: string;
+  @Input() leftIconData?: IconData[];
 
-  @Input() color = 'var(--brand-100)';
-  @Input() backgroundColor = 'var(--utility-900)';
-  @Input() borderColor = 'var(--brand-100)';
-  @Input() borderRadius?: string;
+  @Input() rightIcon?: string;
+  @Input() rightIconData?: IconData[];
+
+  @Input() color?: string;
+  @Input() backgroundColor?: string;
+  @Input() border?: string;
+  @Input() borderRadius = '8px';
   @Input() width?: string;
+  @Input() height = '36px';
+  @Input() padding?: string;
+  @Input() marginLeft?: string;
+  @Input() marginRight?: string;
 
   @Output() buttonClick = new EventEmitter<any>();
 

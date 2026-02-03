@@ -4,6 +4,8 @@
   [style.color]="iconColor"
   [style.width]="iconWidth"
   [style.height]="iconHeight"
+  [style.backgroundColor]="backgroundColor"
+  [routerLink]="iconRouterLink"
   [attr.tabindex]="iconRouterLink ? null : 0"
   [attr.role]="iconRouterLink ? null : 'button'"
   (click)="handleClick($event)"

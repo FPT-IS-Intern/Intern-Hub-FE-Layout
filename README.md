@@ -156,6 +156,8 @@ interface HeaderData {
   dropdownIcon?: IconData | string;
   dropdownIconColor?: string;
   logo?: string;
+  logoWidth?: string;
+  logoHeight?: string;
 }
 
 interface HeaderAction {
@@ -186,30 +188,96 @@ import { SidebarComponent, SidebarData, SidebarItem } from "@goat-bravos/intern-
 })
 export class MyComponent {
   sidebarData: SidebarData = {
+    backgroundColor: "var(--brand-500)",
+    collapseIcon: "dsi-arrow-left-line",
+    expandIcon: "dsi-arrow-right-line",
+    toggleButtonBackgroundColor: "var(--brand-700)",
+    closeButtonBackgroundColor: "var(--neutral-color-50)",
+    toggleButtonIconColor: "var(--neutral-alpha-white)",
+    toggleButtonWidth: "32px",
+    toggleButtonHeight: "32px",
+    toggleButtonSize: "sm",
+
     menuItems: [
       {
         iconLeft: "dsi-home-01-line",
-        content: "Dashboard",
-        url: "/dashboard",
-        colorIconLeft: "#666",
-        colorIconLeftHover: "#fff",
-        backgroundColor: "transparent",
-        backgroundColorHover: "#3b82f6",
+        content: "Trang chủ",
+        url: "/homePage",
+        colorIconLeft: "var(--neutral-color-100)",
+        colorIconLeftHover: "var(--brand-500)",
+        colorContent: "var(--neutral-color-300)",
+        colorContentHover: "var(--brand-500)",
+        backgroundColorHover: "var(--neutral-100)",
+        borderRadius: "8px",
+        width: "100%",
+        height: "48px",
       },
       {
-        iconLeft: "dsi-users-line",
-        content: "Users",
+        iconLeft: "dsi-user-01-line",
+        content: "Quản lý người dùng",
         url: "/users",
-        colorIconLeft: "#666",
-        colorIconLeftHover: "#fff",
+        colorIconLeft: "var(--neutral-color-100)",
+        colorIconLeftHover: "var(--brand-500)",
+        colorContent: "var(--neutral-color-300)",
+        colorContentHover: "var(--brand-500)",
+        backgroundColorHover: "var(--neutral-100)",
+        borderRadius: "8px",
+        width: "100%",
+        height: "48px",
       },
       {
-        iconLeft: "dsi-settings-line",
-        content: "Settings",
-        url: "/settings",
+        iconLeft: "dsi-briefcase-line",
+        content: "Dự án",
+        url: "/projects",
+        colorIconLeft: "var(--neutral-color-100)",
+        colorIconLeftHover: "var(--brand-500)",
+        colorContent: "var(--neutral-color-300)",
+        colorContentHover: "var(--brand-500)",
+        backgroundColorHover: "var(--neutral-100)",
+        borderRadius: "8px",
+        width: "100%",
+        height: "48px",
+      },
+      {
+        iconLeft: "dsi-calendar-line",
+        content: "Lịch làm việc",
+        url: "/calendar",
+        colorIconLeft: "var(--neutral-color-100)",
+        colorIconLeftHover: "var(--brand-500)",
+        colorContent: "var(--neutral-color-300)",
+        colorContentHover: "var(--brand-500)",
+        backgroundColorHover: "var(--neutral-100)",
+        borderRadius: "8px",
+        width: "100%",
+        height: "48px",
+      },
+      {
+        iconLeft: "dsi-chart-line",
+        content: "Thống kê",
+        url: "/statistics",
+        colorIconLeft: "var(--neutral-color-100)",
+        colorIconLeftHover: "var(--brand-500)",
+        colorContent: "var(--neutral-color-300)",
+        colorContentHover: "var(--brand-500)",
+        backgroundColorHover: "var(--neutral-100)",
+        borderRadius: "8px",
+        width: "100%",
+        height: "48px",
+      },
+      {
+        iconLeft: "dsi-team-line",
+        content: "Nhóm",
+        url: "/teams",
+        colorIconLeft: "var(--neutral-color-100)",
+        colorIconLeftHover: "var(--brand-500)",
+        colorContent: "var(--neutral-color-300)",
+        colorContentHover: "var(--brand-500)",
+        backgroundColorHover: "var(--neutral-100)",
+        borderRadius: "8px",
+        width: "100%",
+        height: "48px",
       },
     ],
-    backgroundColor: "#1e293b",
   };
 }
 ```
@@ -239,6 +307,17 @@ interface SidebarItem {
 interface SidebarData {
   menuItems: SidebarItem[];
   backgroundColor?: string;
+  collapseIcon?: string;
+  expandIcon?: string;
+  toggleButtonBackgroundColor?: string;
+  toggleButtonIconColor?: string;
+  toggleButtonSize?: string;
+  toggleButtonBorderRadius?: string;
+  toggleButtonPadding?: string;
+  toggleButtonWidth?: string;
+  toggleButtonHeight?: string;
+  toggleButtonMarginRight?: string;
+  toggleButtonMarginLeft?: string;
 }
 ```
 
@@ -283,20 +362,19 @@ export class MyComponent {
 
 **Inputs:**
 
-| Input             | Type                           | Default                | Description              |
-| ----------------- | ------------------------------ | ---------------------- | ------------------------ |
-| Input             | Type                           | Default                | Description              |
-| ----------------- | ------------------------------ | ---------------------- | ------------------------ |
-| `size`            | `'xs' \| 'sm' \| 'md' \| 'lg'` | `'md'` (Optional)      | Button size variant      |
-| `content`         | `string`                       | `''`                   | Button text              |
-| `leftIcon`        | `string`                       | -                      | Left icon text/class     |
-| `rightIcon`       | `string`                       | -                      | Right icon text/class    |
-| `color`           | `string`                       | `'var(--brand-100)'`   | Text color               |
-| `backgroundColor` | `string`                       | `'var(--utility-900)'` | Background color         |
-| `borderColor`     | `string`                       | `'var(--brand-100)'`   | Border color             |
-| `borderRadius`    | `string`                       | -                      | Button border radius     |
-| `width`           | `string`                       | -                      | Button width             |
-| `fontSize`        | `string`                       | -                      | Custom font size         |
+| Input             | Type                           | Default                | Description           |
+| ----------------- | ------------------------------ | ---------------------- | --------------------- |
+| `size`            | `'xs' \| 'sm' \| 'md' \| 'lg'` | `'md'` (Optional)      | Button size variant   |
+| `content`         | `string`                       | `''`                   | Button text           |
+| `leftIcon`        | `string`                       | -                      | Left icon text/class  |
+| `rightIcon`       | `string`                       | -                      | Right icon text/class |
+| `color`           | `string`                       | `'var(--brand-100)'`   | Text color            |
+| `backgroundColor` | `string`                       | `'var(--utility-900)'` | Background color      |
+| `border`          | `string`                       | -                      | Border style          |
+| `borderRadius`    | `string`                       | -                      | Button border radius  |
+| `width`           | `string`                       | -                      | Button width          |
+| `fontSize`        | `string`                       | -                      | Custom font size      |
+| `buttonData`      | `ButtonContainerData`          | -                      | Config object         |
 
 **Outputs:**
 
@@ -400,7 +478,7 @@ export class MyComponent {
 | `icon`             | `string`  | `''`     | Icon class for input              |
 | `typeInput`        | `string`  | `'text'` | Input type (text, password, etc.) |
 | `backgroundColor`  | `string`  | -        | Input background color            |
-| `borderColor`      | `string`  | -        | Input border color                |
+| `border`           | `string`  | -        | Input border style                |
 | `borderColorHover` | `string`  | -        | Input border color on hover       |
 | `borderRadius`     | `string`  | -        | Input border radius               |
 | `placeholderColor` | `string`  | -        | Placeholder text color            |
@@ -772,6 +850,8 @@ interface IconData {
   routerLink?: string;
   width?: string;
   height?: string;
+  backgroundColor?: string;
+  backgroundColorHover?: string;
 }
 ```
 
@@ -802,61 +882,39 @@ export class MyComponent {
 }
 ```
 
+**Inputs (Key inputs only):**
+
+| Input           | Type                 | Description               |
+| --------------- | -------------------- | ------------------------- |
+| `content`       | `string`             | Label text                |
+| `iconLeft`      | `IconData \| string` | Left icon                 |
+| `iconRight`     | `IconData \| string` | Right icon                |
+| `routerLink`    | `string`             | Navigation URL            |
+| `colorContent`  | `string`             | Text color                |
+| `colorIconLeft` | `string`             | Left icon color           |
+| `bgColor`       | `string`             | Background color          |
+| `bgColorHover`  | `string`             | Background color on hover |
+
+**Outputs:**
+
+| Output    | Type                  | Description           |
+| --------- | --------------------- | --------------------- |
+| `clicked` | `EventEmitter<Event>` | Emits on click events |
+
 ---
 
 ## 🛠️ Development
 
-### Prerequisites
-
-- Node.js 18+
-- npm 9+
-- Angular CLI 21+
-
-### Building the Library
+### Building the library
 
 ```bash
-# Install dependencies
-npm install
-
-# Build for production
 npm run build
-
-# Build and pack for local testing
-npm run pack:lib
 ```
 
-### Publishing
+### Running the demo app
 
 ```bash
-# Dry run (test publish)
-npm run publish:lib:dry
-
-# Publish to npm
-npm run publish:lib
-```
-
-### Project Structure
-
-```
-intern-hub-fe-layout/
-├── src/
-│   ├── libs/
-│   │   ├── layouts/              # Layout components
-│   │   │   ├── header/           # Header component
-│   │   │   └── sidebar/          # Sidebar component
-│   │   └── shared/
-│   │       └── components/       # Shared UI components
-│   │           ├── button/       # Button components
-│   │           ├── input/        # Input components
-│   │           ├── table/        # Table components
-│   │           ├── approval/     # Approval list components
-│   │           ├── pop-up/       # Pop-up/modal components
-│   │           ├── icon/         # Icon component
-│   │           └── functional-label/
-│   └── public-api.ts             # Public exports
-├── ng-package.json               # ng-packagr config
-├── package.json
-└── README.md
+npm run demo
 ```
 
 ---
@@ -865,28 +923,14 @@ intern-hub-fe-layout/
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👥 Author
-
-**Intern Hub Team**
-
-- Repository: [GitHub](https://github.com/FPT-IS-Intern/Intern-Hub-FE-Layout)
-
----
-
-<div align="center">
-  <sub>Built with ❤️ by Intern Hub Team</sub>
-</div>
+This project is licensed under the MIT License - see the LICENSE file for details.

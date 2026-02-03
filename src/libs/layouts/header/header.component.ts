@@ -41,6 +41,8 @@ export class HeaderComponent {
     logo: 'assets/FPT-IS-Logo.png',
   };
 
+  @Input() paddingHeader: string = '12px 20px 12px 16px';
+
   handleActionClick(item: HeaderAction, event: Event): void {
     if (item.method) {
       event.preventDefault();

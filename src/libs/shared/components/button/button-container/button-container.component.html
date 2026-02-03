@@ -4,26 +4,42 @@
   [style.minHeight]="sizeStyle.minHeight"
   [style.color]="color"
   [style.backgroundColor]="backgroundColor"
-  [style.borderColor]="borderColor"
+  [style.border]="border"
   [style.borderRadius]="borderRadius"
   [style.width]="width"
+  [style.height]="height"
+  [style.padding]="padding"
+  [style.marginLeft]="marginLeft"
+  [style.marginRight]="marginRight"
   (click)="handleClick()"
 >
-  @if (leftIcon) {
-    <app-icon [className]="leftIcon"></app-icon>
+  @if (leftIcon || (leftIconData && leftIconData.length > 0)) {
+    @for (iconData of leftIconData; track iconData) {
+      <app-icon [iconData]="iconData"></app-icon>
+    }
+    @if (leftIcon && (!leftIconData || leftIconData.length === 0)) {
+      <app-icon [icon]="leftIcon"></app-icon>
+    }
   }
 
-  <span
-    class="button-content"
-    [style.minWidth]="sizeStyle.contentWidth"
-    [style.minHeight]="sizeStyle.contentHeight"
-    [style.fontSize]="fontSize || sizeStyle.fontSize"
-    [style.color]="color"
-  >
-    {{ content }}
-  </span>
+  @if (content) {
+    <span
+      class="button-content"
+      [style.minWidth]="sizeStyle.contentWidth"
+      [style.minHeight]="sizeStyle.contentHeight"
+      [style.fontSize]="fontSize || sizeStyle.fontSize"
+      [style.color]="color"
+    >
+      {{ content }}
+    </span>
+  }
 
-  @if (rightIcon) {
-    <app-icon [className]="rightIcon"></app-icon>
+  @if (rightIcon || (rightIconData && rightIconData.length > 0)) {
+    @for (iconData of rightIconData; track iconData) {
+      <app-icon [iconData]="iconData"></app-icon>
+    }
+    @if (rightIcon && (!rightIconData || rightIconData.length === 0)) {
+      <app-icon [icon]="rightIcon"></app-icon>
+    }
   }
 </button>

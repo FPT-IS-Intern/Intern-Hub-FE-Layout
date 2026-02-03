@@ -5,9 +5,11 @@ import { RouterModule } from '@angular/router';
 export interface IconData {
   icon: string;
   colorIcon?: string;
+  backgroundColorHover?: string;
   routerLink?: string;
   width?: string;
   height?: string;
+  backgroundColor?: string;
 }
 
 @Component({
@@ -30,10 +32,8 @@ export class IconComponent {
   @Output() clicked = new EventEmitter<Event>();
 
   get iconClass(): string {
-    if (this.iconData?.icon) {
-      return this.iconData.icon;
-    }
-    return this.icon || '';
+    const iconName = this.iconData?.icon || this.icon || '';
+    return iconName.includes('dsi') ? iconName : `dsi ${iconName}`;
   }
 
   get iconColor(): string | undefined {
@@ -50,6 +50,10 @@ export class IconComponent {
 
   get iconRouterLink(): string | undefined {
     return this.iconData?.routerLink || this.routerLink;
+  }
+
+  get backgroundColor(): string | undefined {
+    return this.iconData?.backgroundColor;
   }
 
   handleClick(event: Event): void {

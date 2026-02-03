@@ -1,28 +1,61 @@
-<div class="sidebar-wrapper">
-  <aside
-    class="sidebar"
-    [style.background-color]="!isSidebarExpanded ? data.backgroundColor : null"
-  >
-    @for (item of data.menuItems; track $index) {
-      <app-functional-label
-        class="sidebar-item"
-        [isSidebarExpanded]="isSidebarExpanded"
-        [iconLeft]="item.iconLeft"
-        [iconRight]="item.iconRight"
-        [content]="item.content"
-        [routerLink]="item.url"
-        [colorIconLeft]="item.colorIconLeft"
-        [colorIconRight]="item.colorIconRight"
-        [colorContent]="item.colorContent"
-        [backgroundColor]="item.backgroundColor"
-        [borderRadius]="item.borderRadius"
-        (clicked)="onMenuItemClick(item, $event)"
-        [colorIconLeftHover]="item.colorIconLeftHover"
-        [colorIconRightHover]="item.colorIconRightHover"
-        [backgroundColorHover]="item.backgroundColorHover"
-        [width]="item.width"
-        [height]="item.height"
-      ></app-functional-label>
+<div class="sidebar-wrapper" [class.expanded]="isSidebarExpanded">
+  <div>
+    <aside class="sidebar">
+      @for (item of data.menuItems; track $index) {
+        <app-functional-label
+          class="sidebar-item"
+          [isSidebarExpanded]="isSidebarExpanded"
+          [iconLeft]="item.iconLeft"
+          [iconRight]="item.iconRight"
+          [content]="item.content"
+          [routerLink]="item.url"
+          [colorIconLeft]="item.colorIconLeft"
+          [colorIconRight]="item.colorIconRight"
+          [colorContent]="item.colorContent"
+          [colorContentHover]="item.colorContentHover"
+          [backgroundColor]="item.backgroundColor"
+          [borderRadius]="item.borderRadius"
+          (clicked)="onMenuItemClick(item, $event)"
+          [colorIconLeftHover]="item.colorIconLeftHover"
+          [colorIconRightHover]="item.colorIconRightHover"
+          [backgroundColorHover]="item.backgroundColorHover"
+          [width]="item.width"
+          [height]="item.height"
+        ></app-functional-label>
+      }
+    </aside>
+
+    <!-- ✅ Toggle button - chỉ hiện khi KHÔNG expanded -->
+    @if (!isSidebarExpanded) {
+      <app-button-container
+        class="sidebar-toggle-button"
+        [leftIconData]="toggleButtonIconData"
+        [backgroundColor]="data.toggleButtonBackgroundColor || 'transparent'"
+        [borderRadius]="'8px'"
+        [size]="'sm'"
+        [width]="'36px'"
+        [height]="'36px'"
+        (buttonClick)="toggleSidebar()"
+      ></app-button-container>
     }
-  </aside>
+
+    <!-- ✅ Close button - chỉ hiện khi expanded -->
+    @if (isSidebarExpanded) {
+      <app-button-container
+        class="sidebar-close-button"
+        [leftIconData]="closeButtonIconData"
+        [backgroundColor]="
+          data.closeButtonBackgroundColor || 'var(--brand-400)'
+        "
+        [color]="data.toggleButtonIconColor || 'var(--neutral-500)'"
+        [borderRadius]="'8px'"
+        [size]="'sm'"
+        (buttonClick)="toggleSidebar()"
+        [width]="'36px'"
+        [height]="'36px'"
+        [marginRight]="data.closeButtonMarginRight || '24px'"
+        [marginLeft]="data.closeButtonMarginLeft || 'auto'"
+      ></app-button-container>
+    }
+  </div>
 </div>

@@ -18,18 +18,26 @@ export class InputTextComponent {
   @Input() maxLength: number = 0; // 0 = no limit
   @Input() showLimit: boolean = false;
   @Input() icon: string = '';
+  @Input() widthIcon: string = '16px';
+  @Input() heightIcon: string = '16px';
   @Input() typeInput: string = 'text';
+  @Input() showLabel: boolean = true;
 
   // Customization
   @Input() placeholderColor: string = '';
-  @Input() borderColor: string = '';
-  @Input() borderColorHover: string = '';
-  @Input() borderRadius: string = '';
-  @Input() padding: string = '';
-  @Input() height: string = '';
-  @Input() fontSize: string = '';
-  @Input() fontWeight: string = '';
-  @Input() backgroundColor: string = '';
+  @Input() border: string = '';
+  @Input() borderRadius = '8px';
+  @Input() padding = '8px 12px';
+  @Input() height = '36px';
+  @Input() fontSizeContent: string = '14px';
+  @Input() fontWeightContent: string = '500';
+  @Input() colorContent: string = 'var(--neutral-color-875)';
+
+  @Input() fontSizeLabel: string = '14px';
+  @Input() fontWeightLabel: string = '500';
+  @Input() colorLabel: string = 'var(--neutral-color-875)';
+
+  @Input() backgroundColor: string = 'var(--neutral-color-10)';
 
   @Output() valueChange = new EventEmitter<string>();
   @Output() iconClick = new EventEmitter<void>();

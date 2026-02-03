@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  HostListener,
-} from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { IconComponent, IconData } from '../icon/icon.component';
@@ -33,7 +27,8 @@ export class FunctionalLabelComponent {
   @Input() backgroundColorHover?: string;
   @Input() borderRadiusHover?: string;
 
-  @Input() content: string = '';
+  @Input() content?: string;
+  @Input() fontSizeContent?: string = '14px';
   @Input() colorContent?: string;
   @Input() widthContent?: string = '100%';
   @Input() heightContent?: string = '100%';
@@ -45,37 +40,18 @@ export class FunctionalLabelComponent {
 
   @Input() routerLink?: string;
   @Input() isSidebarExpanded: boolean = false;
-
   @Output() clicked = new EventEmitter<Event>();
 
-  isHovered: boolean = false;
-
-  @HostListener('mouseenter')
-  onMouseEnter() {
-    this.isHovered = true;
-  }
-
-  @HostListener('mouseleave')
-  onMouseLeave() {
-    this.isHovered = false;
-  }
-
   get currentBackgroundColor(): string | undefined {
-    return this.isHovered
-      ? this.backgroundColorHover || this.backgroundColor
-      : this.backgroundColor;
+    return this.backgroundColor;
   }
 
   get currentBorderRadius(): string | undefined {
-    return this.isHovered
-      ? this.borderRadiusHover || this.borderRadius
-      : this.borderRadius;
+    return this.borderRadius;
   }
 
   get currentColorContent(): string | undefined {
-    return this.isHovered
-      ? this.colorContentHover || this.colorContent
-      : this.colorContent;
+    return this.colorContent;
   }
 
   get hasIconLeft(): boolean {
@@ -86,14 +62,12 @@ export class FunctionalLabelComponent {
     return !!this.iconRight;
   }
 
-  // ✅ Chỉ giữ 1 iconLeftData
   get iconLeftData(): IconData | undefined {
     if (!this.iconLeft) return undefined;
 
-    const color =
-      this.isHovered || this.isSidebarExpanded
-        ? this.colorIconLeftHover || this.colorIconLeft
-        : this.colorIconLeft;
+    const color = this.isSidebarExpanded
+      ? this.colorIconLeftHover || this.colorIconLeft
+      : this.colorIconLeft;
 
     if (typeof this.iconLeft === 'string') {
       return {
@@ -109,14 +83,12 @@ export class FunctionalLabelComponent {
     };
   }
 
-  // ✅ Chỉ giữ 1 iconRightData
   get iconRightData(): IconData | undefined {
     if (!this.iconRight) return undefined;
 
-    const color =
-      this.isHovered || this.isSidebarExpanded
-        ? this.colorIconRightHover || this.colorIconRight
-        : this.colorIconRight;
+    const color = this.isSidebarExpanded
+      ? this.colorIconRightHover || this.colorIconRight
+      : this.colorIconRight;
 
     if (typeof this.iconRight === 'string') {
       return {

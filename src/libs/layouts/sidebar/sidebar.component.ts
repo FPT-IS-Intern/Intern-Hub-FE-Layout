@@ -1,6 +1,7 @@
-import { Component, HostListener, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FunctionalLabelComponent } from '../../shared/components/functional-label/functional-label.component';
+import { ButtonContainerComponent } from '../../shared/components/button/button-container/button-container.component';
 import { IconData } from '../../shared/components/icon/icon.component';
 
 export interface SidebarItem {
@@ -25,28 +26,45 @@ export interface SidebarItem {
 export interface SidebarData {
   menuItems: SidebarItem[];
   backgroundColor?: string;
+  collapseIcon?: string;
+  expandIcon?: string;
+  toggleButtonBackgroundColor?: string;
+  closeButtonBackgroundColor?: string;
+  toggleButtonIconColor?: string;
+  toggleButtonSize?: string;
+  toggleButtonBorderRadius?: string;
+  toggleButtonPadding?: string;
+  toggleButtonWidth?: string;
+  toggleButtonHeight?: string;
+  closeButtonMarginRight?: string;
+  closeButtonMarginLeft?: string;
 }
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, FunctionalLabelComponent],
+  imports: [CommonModule, FunctionalLabelComponent, ButtonContainerComponent],
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
   @Input() data: SidebarData = { menuItems: [] };
+  @Input() sidebarWidthCollapse: string = '59px';
+  @Input() sidebarWidthExpand: string = '227px';
+  @Input() isSidebarExpanded = false;
 
-  isSidebarExpanded = false;
+  @Input() leftIcon?: string;
+  @Input() rightIcon?: string;
 
-  @HostListener('mouseenter')
-  onMouseEnter() {
-    this.isSidebarExpanded = true;
-  }
+  @Output() sidebarToggled = new EventEmitter<boolean>();
 
-  @HostListener('mouseleave')
-  onMouseLeave() {
-    this.isSidebarExpanded = false;
+  @Input() toggleButtonIconData?: IconData[];
+
+  @Input() closeButtonIconData?: IconData[];
+
+  toggleSidebar(): void {
+    this.isSidebarExpanded = !this.isSidebarExpanded;
+    this.sidebarToggled.emit(this.isSidebarExpanded);
   }
 
   onMenuItemClick(item: SidebarItem, event: Event): void {

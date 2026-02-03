@@ -1,11 +1,11 @@
-// Header Component - Optimized for Intern-Hub Shell
+$radius: 28px;
+$padding-header: 12px 20px 12px 16px;
+
 :host {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-
-$padding-header: 16px 8px;
 
 .app-header {
   height: 70px;
@@ -13,7 +13,6 @@ $padding-header: 16px 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: $padding-header;
   background-color: transparent;
   box-sizing: border-box;
 }
@@ -44,7 +43,7 @@ $padding-header: 16px 8px;
   align-items: center;
   justify-content: center;
   background: transparent;
-  border-radius: var(--radius-full);
+  border-radius: $radius;
   border: none;
   cursor: pointer;
   color: var(--brand-600);
@@ -61,7 +60,7 @@ $padding-header: 16px 8px;
     right: -4px;
     min-width: 16px;
     height: 16px;
-    padding: $padding-header;
+    padding: 12px 20px 12px 16px;
     display: flex;
     align-items: center;
     justify-content: center;

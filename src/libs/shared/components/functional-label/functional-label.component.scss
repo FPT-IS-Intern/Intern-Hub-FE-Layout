@@ -12,7 +12,16 @@
   padding: 0;
   cursor: pointer;
   box-sizing: border-box;
-  transition: all 0.25s ease;
+  transition: all 0.3s ease;
+
+  background-color: var(--bg-color, transparent);
+  &:hover {
+    background-color: var(--bg-hover-color, var(--bg-color, transparent));
+
+    a {
+      color: var(--content-hover-color, var(--content-color));
+    }
+  }
 
   app-icon {
     display: flex;
@@ -28,17 +37,16 @@
     white-space: nowrap;
     overflow: hidden;
     text-decoration: none;
-    color: var(--neutral-color-400);
+    color: var(--content-color, var(--neutral-color-400));
     transform: translateX(-10px);
-    transition: all 0.25s ease;
+    transition: all 0.3s ease;
     display: flex;
     justify-content: flex-start;
     align-items: center;
   }
 }
 
-// Khi Sidebar mở rộng (Hover vào wrapper)
-:host-context(.sidebar-wrapper:hover) {
+:host-context(.sidebar-wrapper.expanded) {
   .functional-label {
     justify-content: flex-start;
     padding-left: 8px;
@@ -48,9 +56,8 @@
       visibility: visible;
       max-width: 200px;
       transform: translateX(0);
-      color: var(--brand-600);
       flex: 1;
-      text-align: center;
+      text-align: left;
     }
   }
 }

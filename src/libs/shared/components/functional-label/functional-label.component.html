@@ -5,32 +5,36 @@
   (keydown.space)="handleClick($event)"
   [attr.tabindex]="routerLink ? null : 0"
   [attr.role]="routerLink ? null : 'button'"
-  [style.background-color]="currentBackgroundColor"
-  [style.border-radius]="currentBorderRadius"
+  [style.--bg-color]="backgroundColor"
+  [style.--bg-hover-color]="backgroundColorHover || backgroundColor"
+  [style.border-radius]="borderRadius"
   [style.width]="width"
   [style.height]="height"
+  [style.--content-hover-color]="colorContentHover"
 >
   @if (hasIconLeft && iconLeftData) {
     <app-icon
       [iconData]="iconLeftData"
       [width]="widthIconLeft"
       [height]="heightIconLeft"
-      [colorIconHover]="colorIconLeftHover"
-      [backgroundColorHover]="backgroundColorHover"
     ></app-icon>
   }
+
   <a
     [routerLink]="routerLink"
-    [style.color]="currentColorContent"
     [style.width]="widthContent"
     [style.height]="heightContent"
-    >{{ content }}</a
+    [style.font-size]="fontSizeContent"
+    [style.--content-color]="colorContent"
   >
+    {{ content }}
+  </a>
+
   @if (hasIconRight && iconRightData) {
     <app-icon
       [iconData]="iconRightData"
-      [colorIconHover]="colorIconRightHover"
-      [backgroundColorHover]="backgroundColorHover"
+      [width]="widthIconRight"
+      [height]="heightIconRight"
     ></app-icon>
   }
 </div>
