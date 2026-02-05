@@ -1,4 +1,10 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,7 +17,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ModalComponent {
   @Input() title: string = '';
-  @Input() width: string = '800px';
+  @Input() maxWidth: string = '800px';
   @Input() minHeight: string = '300px';
   @Input() isOpen: boolean = false;
   @Input() theme: 'default' | 'white' = 'default';
