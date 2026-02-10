@@ -5,9 +5,11 @@
     [style.width]="'100%'"
     [style.max-width]="maxWidth"
     [style.min-height]="minHeight"
+    (click)="$event.stopPropagation()"
   >
     <div class="modal-header">
       <span class="modal-title">{{ title }}</span>
+
       <button class="modal-close-btn" (click)="onCloseClick()">
         <svg
           width="24"
@@ -26,9 +28,11 @@
         </svg>
       </button>
     </div>
+
     <div class="modal-body">
       <ng-content select="[modal-body]"></ng-content>
     </div>
+
     <div class="modal-footer">
       <ng-content select="[modal-footer]"></ng-content>
     </div>

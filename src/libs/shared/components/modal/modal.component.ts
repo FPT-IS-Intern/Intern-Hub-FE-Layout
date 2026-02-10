@@ -1,36 +1,35 @@
 import {
   Component,
+  EventEmitter,
   Input,
   Output,
-  EventEmitter,
   ChangeDetectionStrategy,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-modal',
-  standalone: true,
-  imports: [CommonModule],
   templateUrl: './modal.component.html',
-  styleUrl: './modal.component.scss',
+  styleUrls: ['./modal.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalComponent {
-  @Input() title: string = '';
-  @Input() maxWidth: string = '800px';
-  @Input() minHeight: string = '300px';
-  @Input() isOpen: boolean = false;
-  @Input() theme: 'default' | 'white' = 'default';
+  @Input() title = '';
+  @Input() isOpen = false;
+
+  // optional props (giữ nguyên nếu lib bạn đang dùng)
+  @Input() maxWidth = '600px';
+  @Input() minHeight = 'auto';
+  @Input() theme: 'white' | 'default' = 'default';
 
   @Output() close = new EventEmitter<void>();
 
-  onOverlayClick(event: Event) {
+  onCloseClick(): void {
+    this.close.emit();
+  }
+
+  onOverlayClick(event: MouseEvent): void {
     if (event.target === event.currentTarget) {
       this.close.emit();
     }
-  }
-
-  onCloseClick() {
-    this.close.emit();
   }
 }
